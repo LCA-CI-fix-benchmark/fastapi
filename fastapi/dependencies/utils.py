@@ -105,6 +105,11 @@ def get_param_sub_dependant(
     param_name: str,
     depends: params.Depends,
     path: str,
+def get_dependant(
+    *,
+    depends: Depends,
+    path: str,
+    param_name: str,
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
     assert depends.dependency
@@ -115,32 +120,30 @@ def get_param_sub_dependant(
         name=param_name,
         security_scopes=security_scopes,
     )
-    for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
-        if query_param_field:
-            query_param.field_info.description = (
-                query_param_field.description or query_param_field.title or ""
-            )
+
+    if isinstance(depends.dependency, BaseModel):  # Check if dependency is a Pydantic model
+        for query_param in dependant.query_params:
+            query_param_field = depends.dependency.__fields__.get(query_param.name)
+            if query_param_field:
+                query_param.field_info.description = (
+                    query_param_field.description or query_param_field.title or ""
+                )
     return dependant
 
 
-def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
-    assert callable(
-        depends.dependency
-    ), "A parameter-less dependency must have a callable dependency"
-    dependant = get_sub_dependant(
-        depends=depends, dependency=depends.dependency, path=path
-    )
-    for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
-        if query_param_field:
-            query_param.field_info.description = (
-                query_param_field.description or query_param_field.title or ""
-            )
+def get_parameterless_sub_dependant(*, depends: Depends, path: str) -> Dependant:
+    assert callable(depends.dependency), "A parameter-less dependency must have a callable dependency"
+    dependant = get_sub_dependant(depends=depends, dependency=depends.dependency, path=path)
+
+    if isinstance(depends.dependency, BaseModel):  # Check if dependency is a Pydantic model
+        for query_param in dependant.query_params:
+            query_param_field = depends.dependency.__fields__.get(query_param.name)
+            if query_param_field:
+                query_param.field_info.description = (
+                    query_param_field.description or query_param_field.title or ""
+                )
     return dependant
 
-
-def get_sub_dependant(
     *,
     depends: params.Depends,
     dependency: Callable[..., Any],
