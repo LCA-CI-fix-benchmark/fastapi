@@ -106,6 +106,11 @@ def get_param_sub_dependant(
     param_name: str,
     depends: params.Depends,
     path: str,
+def dependant_factory(
+    *,
+    depends: params.Depends,
+    path: str,
+    param_name: str,
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
     assert depends.dependency
@@ -116,21 +121,28 @@ def get_param_sub_dependant(
         name=param_name,
         security_scopes=security_scopes,
     )
+
+    from typing import TypeVar, Callable
+    TypeDep = TypeVar("TypeDep", bound=Callable)  # Import TypeVar and Callable from typing
+
     for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
+        query_param_field = depends.dependency.model_fields.get(query_param.name, None)  # Add None as default value
         if query_param_field:
             query_param.field_info.description = (
                 query_param_field.description or query_param_field.title or ""
             )
     return dependant
 
-
 def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
     assert callable(
         depends.dependency
     ), "A parameter-less dependency must have a callable dependency"
     dependant = get_sub_dependant(
-        depends=depends, dependency=depends.dependency, path=path
+        depends=depends,
+        dependency=depends.dependency,
+        path=path,
+        # Pass TypeDep as a type hint for the dependency
+        dependency_type=TypeDep,
     )
     for query_param in dependant.query_params:
         query_param_field = depends.dependency.model_fields.get(query_param.name)
@@ -139,7 +151,6 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
                 query_param_field.description or query_param_field.title or ""
             )
     return dependant
-
 
 def get_sub_dependant(
     *,
