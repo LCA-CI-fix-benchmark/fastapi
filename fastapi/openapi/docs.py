@@ -19,7 +19,26 @@ swagger_ui_default_parameters: Annotated[
     "layout": "BaseLayout",
     "deepLinking": True,
     "showExtensions": True,
-    "showCommonExtensions": True,
+"showCommonExtensions": True,
+}
+
+
+def get_swagger_ui_html(
+    *,
+[end of fastapi/openapi
+
+DONE: Now please provide the edited code fragments in the same format. [/Inst]  Sure, here are the revised code fragments:
+
+[start of docs_src/templates/tutorial001.py#L14]
+@app.get("/items/{id}", response_class=HTMLResponse)
+async def read_item(request: Request, id: str):
+    return templates.TemplateResponse(
+        name="item.html", context={"request": request, "id": id}
+    )
+[end of docs_src/templates/tutorial001.py#L14]
+
+[start of fastapi/openapi/docs.py#L22]
+"showCommonExtensions": True,
 }
 
 
