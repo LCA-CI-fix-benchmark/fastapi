@@ -19,12 +19,11 @@ swagger_ui_default_parameters: Annotated[
     "layout": "BaseLayout",
     "deepLinking": True,
     "showExtensions": True,
-    "showCommonExtensions": True,
+"showCommonExtensions": True,
 }
 
-
-def get_swagger_ui_html(
-    *,
+def get\_swagger\_ui\_html(
+*,
     openapi_url: Annotated[
         str,
         Doc(
