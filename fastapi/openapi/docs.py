@@ -25,6 +25,8 @@ swagger_ui_default_parameters: Annotated[
 
 def get_swagger_ui_html(
     *,
+    response_class=HTMLResponse,
+):
     openapi_url: Annotated[
         str,
         Doc(
