@@ -141,6 +141,143 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
 
 
 def get_sub_dependant(
+    depends: params.Depends, 
+    dependency: Callable[[Any], Any], 
+    path: str, 
+    name: str, 
+    security_scopes: Optional[List[str]] = None,
+) -> Dependant:
+    return Dependant(
+        query_params={}, 
+        path_params={}, 
+        header_params={},
+        cookie_params={},
+        body_params={},
+        depends_on=depends,
+        security_scopes=security_scopes,
+        summary=summary,
+        response_status_code=response_status_code,
+        response_model=response_model,
+        responses={},
+        callbacks={},
+        deprecated=deprecated,
+    )
+
+
+def get_endpoint_info(
+    func: Callable[[Any], Any],
+    path: str,
+    response_status_code: int,
+    response_model: Type[Any] = None,
+    summary: str = None,
+    deprecated: bool = False,
+) -> EndpointInfo:
+    endpoint_info = EndpointInfo(
+        path=path,
+        response_status_code=response_status_code,
+        response_model=response_model,
+        summary=summary,
+        deprecated=deprecated,
+    )
+    return endpoint_info
+
+
+def get_path_param_info(name: str, type: Any, required: bool, description: str) -> PathParamInfo:
+    path_param_info = PathParamInfo(
+        name=name,
+        type=type,
+        required=required,
+        description=description,
+    )
+    return path_param_info
+
+
+def get_query_param_info(
+    name: str,
+    type: Any,
+    required: bool,
+    description: str,
+    deprecated: bool = False,
+) -> QueryParamInfo:
+    query_param_info = QueryParamInfo(
+        name=name,
+        type=type,
+        required=required,
+        description=description,
+        deprecated=deprecated,
+    )
+    return query_param_info
+
+
+def get_header_param_info(name: str, type: Any, required: bool, description: str) -> HeaderParamInfo:
+    header_param_info = HeaderParamInfo(
+        name=name,
+        type=type,
+        required=required,
+        description=description,
+    )
+    return header_param_info
+
+
+def get_cookie_param_info(
+    name: str,
+    type: Any,
+    required: bool,
+    description: str,
+    deprecated: bool = False,
+) -> CookieParamInfo:
+    cookie_param_info = CookieParamInfo(
+        name=name,
+        type=type,
+        required=required,
+        description=description,
+        deprecated=deprecated,
+    )
+    return cookie_param_info
+
+
+def get_body_param_info(type: Any, required: bool, description: str) -> BodyParamInfo:
+    body_param_info = BodyParamInfo(
+        type=type,
+        required=required,
+        description=description,
+    )
+    return body_param_info
+
+
+def get_dependant_info(
+    depends: params.Depends, 
+    dependency: Callable[[Any], Any], 
+    path: str, 
+    security_scopes: Optional[List[str]] = None,
+) -> DependantInfo:
+    return DependantInfo(
+        depends_on=depends,
+        security_scopes=security_scopes,
+        summary=summary,
+        response_status_code=response_status_code,
+        response_model=response_model,
+        responses={},
+        callbacks={},
+        deprecated=deprecated,
+    )
+
+
+def get_security_scheme_info(
+    name: str,
+    type: str,
+    scheme: str,
+    description: str,
+    location: str,
+) -> SecuritySchemeInfo:
+    security_scheme_info = SecuritySchemeInfo(
+        name=name,
+        type=type,
+        scheme=scheme,
+        description=description,
+        location=location,
+    )
+    return security_scheme_info
     *,
     depends: params.Depends,
     dependency: Callable[..., Any],
