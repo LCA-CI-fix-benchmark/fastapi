@@ -142,6 +142,32 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
 
 
 def get_sub_dependant(
+    depends: params.Depends,
+    dependency: Callable,
+    path: str,
+    name: str,
+    security_scopes: Optional[List[str]] = None,
+) -> Dependant:
+    """
+    Returns a sub-dependant that matches the given `dependency` and `path`.
+    """
+    dependant = Dependant(
+        path=path,
+        name=name,
+        dependency=dependency,
+        query_params=[],
+        security_scopes=security_scopes,
+    )
+    if callable(dependency):
+        sig = inspect.signature(dependency)
+        for name, param in sig.parameters.items():
+            if param.kind == param.POSITIONAL_OR_KEYWORD:
+                dependant.query_params.append(
+                    QueryParam(name=name, field_info=FieldInfo(name=name))
+                )
+    return dependant
+
+
     *,
     depends: params.Depends,
     dependency: Callable[..., Any],
