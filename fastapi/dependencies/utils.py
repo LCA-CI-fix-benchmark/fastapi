@@ -105,25 +105,7 @@ def get_param_sub_dependant(
     param_name: str,
     depends: params.Depends,
     path: str,
-    security_scopes: Optional[List[str]] = None,
-) -> Dependant:
-    assert depends.dependency
-    dependant = get_sub_dependant(
-        depends=depends,
-        dependency=depends.dependency,
-        path=path,
-        name=param_name,
-        security_scopes=security_scopes,
-    )
-    for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
-        if query_param_field:
-            query_param.field_info.description = (
-                query_param_field.description or query_param_field.title or ""
-            )
-    return dependant
-
-
+```python
 def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
     assert callable(
         depends.dependency
@@ -132,15 +114,71 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
         depends=depends, dependency=depends.dependency, path=path
     )
     for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
+        query_param_field = getattr(depends.dependency, "model_fields", {}).get(query_param.name)
         if query_param_field:
             query_param.field_info.description = (
-                query_param_field.description or query_param_field.title or ""
+                query_param_field.get("description") or query_param_field.get("title") or ""
             )
     return dependant
 
 
 def get_sub_dependant(
+        depends: Optional[params.Depends] = None,
+        *,
+        depends_on: Optional[params.Depends] = None,
+        dependency: Optional[Type[DependsOnCallable]] = None,
+        path: str,
+        name: Optional[str] = None,
+        security_scopes: Optional[List[str]] = None,
+) -> Dependant:
+    if depends is not None and depends_on is not None:
+        raise ValueError("Use depends or depends_on, not both.")
+    dependant = Dependant(path=path, name=name)
+    dep_fields = getattr(
+        depends.dependency, "model_fields", {}
+    ) if depends else {}
+    dependant.security_scopes = security_scopes
+    dependant.method_cache_deps = depends.method_cache_deps
+    dependant.body_params.extend(list(depend.body_params))
+    dependant.header_params.extend(list(depend.header_params))
+    dependant.query_params.extend(list(depend.query_params))
+    dependant.cookie_params.extend(list(depend.cookie_params))
+    dependant.path_params.extend(list(depend.path_params))
+    dependant.path_params_values.update(depend.path_params_values)
+    dependant.path_params_values.update(depend.path_params_defaults)
+    for param in dependant.body_params:
+        param_field = dep_fields.get(param.name)
+        if param_field:
+            param.field_info.description = (
+                param_field.get("description") or param_field.get("title") or ""
+            )
+    for param in dependant.header_params:
+        param_field = dep_fields.get(param.name)
+        if param_field:
+            param.field_info.description = (
+                param_field.get("description") or param_field.get("title") or ""
+            )
+    for param in dependant.query_params:
+        param_field = dep_fields.get(param.name)
+        if param_field:
+            param.field_info.description = (
+                param_field.get("description") or param_field.get("title") or ""
+            )
+    for param in dependant.cookie_params:
+        param_field = dep_fields.get(param.name)
+        if param_field:
+            param.field_info.description = (
+                param_field.get("description") or param_field.get("title") or ""
+            )
+    for param in dependant.path_params:
+        param_field = dep_fields.get(param.name)
+        if param_field:
+            param.field_info.description = (
+                param_field.get("description") or param_field.get("title") or ""
+            )
+    return dependant
+```
+
     *,
     depends: params.Depends,
     dependency: Callable[..., Any],

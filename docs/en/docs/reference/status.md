@@ -8,9 +8,12 @@ from fastapi import status
 
 `status` is provided directly by Starlette.
 
-It containes a group of named constants (variables) with integer status codes.
+It contains a group of named constants (variables) with integer status codes.
 
 For example:
+```python
+# Example code here
+```
 
 * 200: `status.HTTP_200_OK`
 * 403: `status.HTTP_403_FORBIDDEN`
