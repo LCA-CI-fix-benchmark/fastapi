@@ -19,12 +19,28 @@ swagger_ui_default_parameters: Annotated[
     "layout": "BaseLayout",
     "deepLinking": True,
     "showExtensions": True,
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.65.2",
+    },
+    "servers": [{"url": "http://localhost:8000/"}],
+    "components": {
+        "schemas": {"BaseModel": YourBaseModelSchema},
+    },
+    "responses": {
+        "default": {
+            "description": "API response",
+            "content": {
+                "application/json": {"schema": YourJSONResponseSchema},
+            },
+        },
+    },
+    "security": [{"APIKeyAuth": []}],
     "showCommonExtensions": True,
 }
 
-
-def get_swagger_ui_html(
-    *,
     openapi_url: Annotated[
         str,
         Doc(
