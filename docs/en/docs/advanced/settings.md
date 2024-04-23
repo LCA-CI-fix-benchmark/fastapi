@@ -4,7 +4,10 @@ In many cases your application could need some external settings or configuratio
 
 Most of these settings are variable (can change), like database URLs. And many could be sensitive, like secrets.
 
-For this reason it's common to provide them in environment variables that are read by the application.
+For this reason it's common to provide them ifrom pydantic.main import BaseModel
+
+class Settings(BaseModel):
+    env_file: strenvironment variables that are read by the application.
 
 ## Environment Variables
 

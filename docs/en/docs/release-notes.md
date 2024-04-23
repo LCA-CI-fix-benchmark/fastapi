@@ -18,8 +18,8 @@ hide:
 * ⬆️ Upgrade Starlette to `>=0.29.0,<0.33.0`, update docs and usage of templates with new Starlette arguments. PR [#10846](https://github.com/tiangolo/fastapi/pull/10846) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.107.0
-
-### Upgrades
+* You can find more information about this feature in the documentation for [Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/).
+* The `"fastapi[all]"` installation now includes additional features and functionalities.## Upgrades
 
 * ⬆️ Upgrade Starlette to 0.28.0. PR [#9636](https://github.com/tiangolo/fastapi/pull/9636) by [@adriangb](https://github.com/adriangb).
 
@@ -32,7 +32,7 @@ hide:
 
 ### Breaking Changes
 
-Using resources from dependencies with `yield` in background tasks is no longer supported.
+* 🐛 Fix empty response body when the default `status_code` is empty but a `Response` parameter with `response.status_code` is set. PR [#5360](https://github.com/tiangolo/fastapi/pull/5360) by [@tmeckel](https://github.com/tmeckel).ing resources from dependencies with `yield` in background tasks is no longer supported.
 
 This change is what supports the new features, read below. 🤓
 
@@ -78,7 +78,7 @@ def get_item(item_id: str, username: Annotated[str, Depends(get_username)]):
 
 ---
 
-Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](https://fastapi.tiangolo.com/tutorial/handling-errors/#install-custom-exception-handlers) would have already run.
+Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](https://fastapi.tiangolo.com/tutorial/handling-errors/#install-custom-exception-handlers) would have alr* Update wording in the documentation related to [OAuth2 scopes](https://fastapi.tiangolo.com/advanced/security/oauth2-scopes/). PR [#371](https://github.com/tiangolo/fastapi/pull/371) by [@cjw296](https://github.com/cjw296).dy run.
 
 This was designed this way mainly to allow using the same objects "yielded" by dependencies inside of background tasks, because the exit code would be executed after the background tasks were finished.
 

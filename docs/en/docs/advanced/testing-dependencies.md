@@ -1,4 +1,5 @@
-# Testing Dependencies with Overrides
+# Testing Dependencies To override a dependency for testing in **FastAPI**, you can use the `app.dependency_overrides` attribute, which is a dictionary.
+To override a dependency, simply assign a new function to the key corresponding to the original dependency function. Overrides
 
 ## Overriding dependencies during testing
 

@@ -1,7 +1,7 @@
 # SQL (Relational) Databases
 
 !!! info
-    These docs are about to be updated. 🎉
+   When using an ORM, you typically define a class that corresponds to a table in a SQL database. Each attribute of the class represents a column in the table, with its name and data type.hese docs are about to be updated. 🎉
 
     The current version assumes Pydantic v1, and SQLAlchemy versions less than 2.0.
 
