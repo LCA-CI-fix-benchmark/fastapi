@@ -73,8 +73,18 @@ def get_item(item_id: str, username: Annotated[str, Depends(get_username)]):
     item = data[item_id]
     if item["owner"] != username:
         raise OwnerError(username)
-    return item
-```
+    retur### Breaking Changes
+
+* ⬆️ Upgrade Uvicorn when installing `fastapi[all]` to the latest version including `uvloop`. The new range is `uvicorn[standard] >=0.12.0,<0.14.0`. 
+  PR [#2548](https://github.com/tiangolo/fastapi/pull/2548) by [@tiangolo](https://github.com/tiangolo).
+
+### Enhancements
+
+* 🚀 Improved performance of request handling by optimizing response generation.
+
+### Bug Fixes
+
+* 🐛 Fix some false-positive mypy errors with `callbacks` parameters and when using the `OAuth2` class in PR [#2547](https://github.com/tiangolo/fastapi/pull/2547) (refer to the details above).``
 
 ---
 
