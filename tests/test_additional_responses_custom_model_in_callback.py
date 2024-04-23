@@ -1,5 +1,11 @@
 from dirty_equals import IsDict
-from fastapi import APIRouter, FastAPI
+from fasta                    "parameters": [
+                        {
+                            "required": True,
+                            "schema": IsDict(
+                                {
+                                    "title": "Callback Url",
+                                    "minLength": 1,rt APIRouter, FastAPI
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, HttpUrl
 from starlette.responses import JSONResponse

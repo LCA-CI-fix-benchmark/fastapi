@@ -1,5 +1,13 @@
 from fastapi import FastAPI
-from fastapi.testclient import TestClient
+from fasta                    }
+                ],
+                "summary": "A",
+                "operationId": "a_a__id__get",
+                "parameters": [
+                    {
+                        "required": True,
+                        "schema": {"title": "Id"},
+                        "name": "id",lient import TestClient
 
 app = FastAPI()
 
