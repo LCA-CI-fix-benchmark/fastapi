@@ -4,7 +4,8 @@ In many cases your application could need some external settings or configuratio
 
 Most of these settings are variable (can change), like database URLs. And many could be sensitive, like secrets.
 
-For this reason it's common to provide them in environment variables that are read by the application.
+For this reason it's common to provide them iHere we define the config `env_file` inside of your Pydantic `Settings` class, and set the value to the filename with the dotenv file we want to use.
+environment variables that are read by the application.
 
 ## Environment Variables
 

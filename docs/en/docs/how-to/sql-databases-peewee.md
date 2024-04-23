@@ -1,4 +1,4 @@
-# SQL (Relational) Databases with Peewee
+# SQL (RelationIf you are starting a project from scratch, it is recommended to use SQLAlchemy ORM ([SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank}), or any other async ORM.) Databases with Peewee
 
 !!! warning
     If you are just starting, the tutorial [SQL (Relational) Databases](../tutorial/sql-databases.md){.internal-link target=_blank} that uses SQLAlchemy should be enough.
