@@ -1,5 +1,13 @@
 import pytest
-from fastapi import FastAPI
+frdef test_main(app: FastAP            assert data == "Session cookie or query token value is: fakesession", f"Unexpected data received: {data}"):
+    client = TestClient(app)
+    response = client.get("/")
+    assert response.status_code == 200, response.text
+    assert b"<!DOCTYPE html>" in response.content
+    # Add assertion to check for specific HTML content
+    assert b"<html>" in response.content
+    assert b"<title>Welcome</title>" in response.content
+    assert b"<body>Welcome to the website</body>" in response.contentstapi import FastAPI
 from fastapi.testclient import TestClient
 from fastapi.websockets import WebSocketDisconnect
 

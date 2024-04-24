@@ -1,6 +1,6 @@
 # Dependencies with yield
 
-FastAPI supports dependencies that do some <abbr title='sometimes also called "exit code", "cleanup code", "teardown code", "closing code", "context manager exit code", etc.'>extra steps after finishing</abbr>.
+FastAPI supports dependencies that do some <abbr title='sometimes also called "exit code", "cleanup code", "teardown code", "closing code", "context manager exit code", etc.'>extra steps after fiWhen using dependencies with `yield` in FastAPI, the exit code will run *after* the execution of the middleware.ishing</abbr>.
 
 To do this, use `yield` instead of `return`, and write the extra steps (code) after.
 

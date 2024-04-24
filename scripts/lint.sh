@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/usrruff fastapi tests docs_src scripts
+ruff format fastapi tests --checkin/env bash
 
 set -e
 set -x

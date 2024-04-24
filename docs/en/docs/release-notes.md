@@ -9,7 +9,18 @@ hide:
 
 ### Docs
 
-* ✏️ Fix typo in dependencies with yield source examples. PR [#10847](https://github.com/tiangolo/fastapi/pull/10847) by [@tiangolo](https://github.com/tiangolo).
+* ✏️ ## Release Notes - Version 1.2.0
+
+### New Features:
+- Added support for dark mode.
+- Implemented real-time collaboration feature.
+
+### Improvements:
+- Enhanced performance for large files.
+- Improved syntax highlighting for multiple languages.
+
+### Bug Fixes:
+- Resolved issue with auto-save functionality.ix typo in dependencies with yield source examples. PR [#10847](https://github.com/tiangolo/fastapi/pull/10847) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.108.0
 
@@ -78,7 +89,29 @@ def get_item(item_id: str, username: Annotated[str, Depends(get_username)]):
 
 ---
 
-Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](https://fastapi.tiangolo.com/tutorial/handling-errors/#install-custom-exception-handlers) would have already run.
+Before FastAPI 0.106.0, raising exceptions after `yield` was not possible, the exit code in dependencies with `yield` was executed *after* the response was sent, so [Exception Handlers](https://fastapi.tiangolo.com/tutorial/handling-errors/#install-cust## Release Notes - Version 0.49.2
+
+### New Features:
+- Added support for exporting files in PDF format.
+- Introduced integration with cloud storage services.
+
+### Improvements:
+- Enhanced user interface for better nav## Release Notes - Version 1.0.0
+
+### New Features:
+- Added support for version control integration.
+- Implemented code snippet sharing feature.
+
+### Improvements:
+- Enhanced user authentication for increased security.
+- Improved performance for handling large repositories.
+
+### Bug Fixes:
+- Resolved issue with file synchronization in real-time.gation.
+- Improved search functionality for faster results.
+
+### Bug Fixes:
+- Fixed issue with file duplication when renaming.-exception-handlers) would have already run.
 
 This was designed this way mainly to allow using the same objects "yielded" by dependencies inside of background tasks, because the exit code would be executed after the background tasks were finished.
 

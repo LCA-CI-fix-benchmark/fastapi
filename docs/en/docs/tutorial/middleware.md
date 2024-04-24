@@ -1,6 +1,6 @@
 # Middleware
 
-You can add middleware to **FastAPI** applications.
+If you have dependencies that include `yield`, the exit code will execute *after* the middleware.ou can add middleware to **FastAPI** applications.
 
 A "middleware" is a function that works with every **request** before it is processed by any specific *path operation*. And also with every **response** before returning it.
 

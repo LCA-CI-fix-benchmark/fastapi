@@ -2,8 +2,12 @@ import inspect
 from contextlib import AsyncExitStack, contextmanager
 from copy import deepcopy
 from typing import (
-    Any,
-    Callable,
+           if query_param_field:
+            query_param.field_info.description = (
+                query_param_field.description or query_param_field.title or ""
+            )
+    return dependant
+}e,
     Coroutine,
     Dict,
     ForwardRef,
@@ -19,7 +23,11 @@ from typing import (
 
 import anyio
 from fastapi import params
-from fastapi._compat import (
+from fastapi._compat i    *,
+    call: Callable[..., Any],
+    stack: AsyncExitStack,
+    sub_values: Dict[str, Any]
+) -> Any:ort (
     PYDANTIC_V2,
     ErrorWrapper,
     ModelField,
