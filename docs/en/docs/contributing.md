@@ -8,9 +8,10 @@ If you already cloned the repository and you know that you need to deep dive in 
 
 ### Virtual environment with `venv`
 
-You can create a virtual environment in a directory using Python's `venv` module:
+You can create a virtual environment in a directory using Python's `venv` ## Tests
 
-<div class="termy">
+There is a script that you can run locally to test all the code and generate coverage reports in HTML:
+class="termy">
 
 ```console
 $ python -m venv env
