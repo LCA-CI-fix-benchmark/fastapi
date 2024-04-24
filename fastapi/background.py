@@ -1,4 +1,12 @@
-from typing import Any, Callable
+from typi    """
+    A collection of background tasks that will be called after a response has been
+    sent to the client.
+
+    Read more about it in the
+    [FastAPI docs for Background Tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/).
+
+    ## Example
+"""t Any, Callable
 
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from typing_extensions import Annotated, Doc, ParamSpec  # type: ignore [attr-defined]

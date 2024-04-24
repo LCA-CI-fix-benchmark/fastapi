@@ -2,7 +2,29 @@
 
 You can declare the type used for the response by annotating the *path operation function* **return type**.
 
-You can use **type annotations** the same way you would for input data in function **parameters**, you can use Pydantic models, lists, dictionaries, scalar values like integers, booleans, etc.
+You can use **type annotations** the same way you would for in=== "Python 3.10+"
+
+    ```Python hl_lines="9-10  13-14  18"
+    {!> ../../../docs_src/response_model/tutorial003_01_py310.py!}
+    ```
+
+=== "Python 3.8+"
+
+    ```Python hl_lines="9-13  15-16  20"
+    {!> ../../../docs_src/response_model/tutorial003_01.py!}
+    ```
+
+With this, we get tooling support, from editors and mypy as this code is correct in terms of types, but we also get the data filtering from FastAPI.
+
+How does this work? Let's check that out. 🤓
+
+### Type Annotations and Tooling
+
+First let's see how editors, mypy and other tools would see this.
+
+`BaseUser` has the base fields. Then `UserIn` inherits from `BaseUser` and adds the `password` field, so, it will include all the fields from both models.
+
+We annotate the function return type as `BaseUser`, but we are actually returning a `UserIn` instance.arameters**, you can use Pydantic models, lists, dictionaries, scalar values like integers, booleans, etc.
 
 === "Python 3.10+"
 

@@ -13,8 +13,18 @@ hide:
 <p align="center">
     <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
 </p>
-<p align="center">
-<a href="https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
+<p align="cente* Validate that the `item_id` is of type `int` for `GET` and `PUT` requests.
+    * If it is not, the client will see a useful, clear error.
+* Check if there is an optional query parameter named `q` (as in `http://127.0.0.1:8000/items/foo?q=somequery`) for `GET` requests.
+    * As the `q` parameter is declared with `= None`, it is optional.
+    * Without the `None` it would be required (as is the body in the case with `PUT`).
+* For `PUT` requests to `/items/{item_id}`, Read the body as JSON:
+    * Check that it has a required attribute `name` that should be a `str`.
+    * Check that it has a required attribute `price` that has to be a `float`.
+    * Check that it has an optional attribute `is_offer`, that should be a `bool`, if present.
+    * All this would also work for deeply nested JSON objects.
+* Convert from and to JSON automatically.
+* Document everything with OpenAPI, that can be used by:"https://github.com/tiangolo/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster" target="_blank">
     <img src="https://github.com/tiangolo/fastapi/workflows/Test/badge.svg?event=push&branch=master" alt="Test">
 </a>
 <a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/tiangolo/fastapi" target="_blank">

@@ -2,8 +2,44 @@ import inspect
 from contextlib import AsyncExitStack, contextmanager
 from copy import deepcopy
 from typing import (
-    Any,
-    Callable,
+           if query_param_field:
+            query_param.field_info.description = (
+                query_param_field.description or query_param_field.title or ""
+            )
+        else:
+            query_param.field_info.description = ""
+    return dependant
+
+
+def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
+    assert callable(
+        depends.dependen    if inspect.isasyncgenfunction(call):
+        return True
+    dunder_call = getattr(call, "__call__", None)  # noqa: B004
+    return inspect.isasyncgenfunction(dunder_call)
+
+
+def is_gen_callable(call: Callable[..., Any]) -> bool:
+    if inspect.isgeneratorfunction(call):
+        return True
+    dunder_call = getattr(call, "__call__", None)  # noqa: B004
+    return inspect.isgeneratorfunction(dunder_call)
+
+
+async def solve_generator(
+    *, call: Callable[..., Any], stack: AsyncExitStack, sub_values: Dict[str, Any]
+) -> Any:
+    if is_gen_callable(call):
+        cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
+    elif is_asyncgen_callable(call):  # Fix: Change to is_asyncgen_callable
+        cm = asynccontextmanager(call)(**sub_values)
+    return await stack.enter_async_context(cm)-less dependency must have a callable dependency"
+    dependant = get_sub_dependant(
+        depends=depends, dependency=depends.dependency, path=path
+    )
+    for query_param in dependant.query_params:
+        query_param_field = depends.dependency.model_fields.get(query_param.name)
+        if query_param_field:e,
     Coroutine,
     Dict,
     ForwardRef,

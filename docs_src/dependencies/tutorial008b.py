@@ -1,4 +1,10 @@
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depdef get_item(item_id: str, username: str = Depends(get_username)):
+    if item_id not in data:
+        raise HTTPException(status_code=404, detail="Item not found")
+    item = data[item_id]
+    if item["owner"] != username:
+        raise HTTPException(status_code=403, detail="User is not authorized to access this item")
+    return itemstAPI, HTTPException
 
 app = FastAPI()
 
