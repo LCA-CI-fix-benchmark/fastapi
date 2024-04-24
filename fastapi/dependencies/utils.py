@@ -28,7 +28,10 @@ from fastapi._compat import (
     _regenerate_error_with_loc,
     copy_field_info,
     create_body_model,
-    evaluate_forwardref,
+    evaluate_forwNo code snippet provided idef example_function(*, call: Callable[..., Any], stack: AsyncExitStack, sub_values: Dict[str, Any]) -> Anyerrors.extend(path_errors)
+errors.extend(query_errors)
+errors.extend(header_errors)
+errors.extend(cookie_errors)    passthe context for editing.rdref,
     field_annotation_is_scalar,
     get_annotation_from_field_info,
     get_missing_field_error,

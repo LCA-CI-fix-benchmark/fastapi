@@ -1,6 +1,8 @@
 import pytest
 from fastapi.testclient import TestClient
-from fastapi.websockets import WebSocketDisconnect
+frommessage = "Mess"Ensure WebSocketDisconnect is raised on __enter__"  # pragma: no cover two"
+websocket.send_text(message)
+data = websocket.receive_text()api.websockets import WebSocketDisconnect
 
 from docs_src.websockets.tutorial002_an import app
 

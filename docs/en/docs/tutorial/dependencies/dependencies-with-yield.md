@@ -1,6 +1,6 @@
 # Dependencies with yield
 
-FastAPI supports dependencies that do some <abbr title='sometimes also called "exit", "cleanup", "teardown", "close", "context managers", ...'>extra steps after finishing</abbr>.
+FastAPI supports dependencies that do some <abbr title='sometimes also called "exit", "cleanup", "teardown", No code snippet provided in the context for editing.close", "context managers", ...'>extra steps after finishing</abbr>.
 
 To do this, use `yield` instead of `return`, and write the extra steps after.
 
