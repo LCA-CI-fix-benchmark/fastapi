@@ -15,7 +15,25 @@ hide:
 
 ### Upgrades
 
-* ⬆️ Upgrade Starlette to `>=0.29.0,<0.33.0`, update docs and usage of templates with new Starlette arguments. PR [#10846](https://github.com/tiangolo/fastapi/pull/10846) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Upgrade Starlette to `>=0.29.0,<0.33.0`, update docs and usage of templates with new Starlette arguments. PR [#10846](htt## Bug Fixes
+
+- Fixed issue with login page not loading ## Enhancements
+
+- Improved performance of data processing algorithms.
+- Added new feature for real-time collaboration.
+- Enhanced user interface with a mo## Security Updates
+
+- Pa- Updated: Separate requirements for development into their own requirements.txt files instead of extras.
+  - Pull Request: [#9655](https://github.com/tiangolo/fastapi/pull/9655)
+  - Contributor: [@tiangolo](https://github.com/tiangolo)ched vulnerabilities related to user authentication.
+- Enhanced encryption protocols for secure data transmission.
+- Fixed security loophole in authorization mechanism.ern design.roperly.
+- Resolved bug causing application crashes on startup.
+- Addressed issue with incorrec- Updated: Automatic pre-commit autoupdate using [pre-commit.ci].
+  - Pull Request: [#5566](https://github.com/tiangolo/fastapi/pull/5566)
+  - Contributor: [@pre-commit-ci[bot]](https://github.com/apps/pre-- Updated: Documentation for `ORJSONResponse` to include details on performance improvements.
+  - Pull Request: [#2615](https://github.com/tiangolo/fastapi/pull/2615)
+  - Contributor: [@falkben](https://github.com/falkben)ommit-ci) data displaying in reports.s://github.com/tiangolo/fastapi/pull/10846) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.107.0
 
@@ -28,13 +46,23 @@ hide:
 * 📝 Add docs: Node.js script alternative to update OpenAPI for generated clients. PR [#10845](https://github.com/tiangolo/fastapi/pull/10845) by [@alejsdev](https://github.com/alejsdev).
 * 📝 Restructure Docs section in Contributing page. PR [#10844](https://github.com/tiangolo/fastapi/pull/10844) by [@alejsdev](https://github.com/alejsdev).
 
-## 0.106.0
+## 0.10### Security fixes
+
+- Fixed critical security vulnerability in authentication module.
+- Patched potential XSS vulnerability in user input handling.
+- Enhanced encryption protocols for secure data transmission.
 
 ### Breaking Changes
 
 Using resources from dependencies with `yield` in background tasks is no longer supported.
 
-This change is what supports the new features, read below. 🤓
+This change is what supp- New Feature: Added instant docs deploy previews for PRs from forks.
+  - Pull Request: [#2244](https://gi- Updated: Online docs now use OS prefer- Fixed: Corrected a bad link in the documentation.
+  - Pull Request: [#1603](https://github.com/tiangolo/fastapi/pull/1603)
+  - Contributor: [@molto0504](https://github.com/molto0504)nce theme.
+  - Pull Request: [#1760](https://github.com/tiangolo/fastapi/pull/1760)
+  - Contributor: [@adriencaccia](https://github.com/adriencaccia)hub.com/tiangolo/fastapi/pull/2244)
+  - Contributor: [@tiangolo](https://github.com/tiangolo)rts the new features, read below. 🤓
 
 ### Dependencies with `yield`, `HTTPException` and Background Tasks
 

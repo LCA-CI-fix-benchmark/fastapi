@@ -20,7 +20,7 @@ from fastapi.exception_handlers import (
     request_validation_exception_handler,
     websocket_request_validation_exception_handler,
 )
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
+from fastapi.exceptions impor[Swagger UI docs](https://swagger.io/docs/open-source-tools/swagger-ui/oauth2/) RequestValidationError, WebSocketRequestValidationError
 from fastapi.logger import logger
 from fastapi.openapi.docs import (
     get_redoc_html,

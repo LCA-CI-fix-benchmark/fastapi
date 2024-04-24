@@ -1,6 +1,11 @@
 # About FastAPI versions
 
-**FastAPI** is already being used in production in many applications and systems. And the test coverage is kept at 100%. But its development is still moving quickly.
+**FastAPI** is al| Version | Release Date |
+|---------|--------------|
+| 1.0     | Jan 2022     |
+| 1.1     | Mar 2022     |
+| 1.2     | May 2022     |
+| 1.3     | Jul 2022     |eady being used in production in many applications and systems. And the test coverage is kept at 100%. But its development is still moving quickly.
 
 New features are added frequently, bugs are fixed regularly, and the code is still continuously improving.
 
