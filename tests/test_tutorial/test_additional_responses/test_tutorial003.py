@@ -2,7 +2,19 @@ from fastapi.testclient import TestClient
 
 from docs_src.additional_responses.tutorial003 import app
 
-client = TestClient(app)
+cli{
+    "HTTPValidationError": {
+        "title": "HTTPValidationError",
+        "type": "object",
+        "properties": {
+            "detail": {
+                "title": "Detail",
+                "type": "array",
+                "items": {"$ref": "#/components/schemas/ValidationError"}
+            }
+        }
+    }
+}t(app)
 
 
 def test_path_operation():

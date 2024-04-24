@@ -1,6 +1,110 @@
-from dirty_equals import IsDict
+f### Summary of Changes:
+1. Import the necessary modules from `pytest`.
+2. Add assertions to check the response status code and JSON content in the `test_post_files` function.
+3. Fix the indentation of the code snippet for better readability.
+
+### Edited Code:
 from fastapi.testclient import TestClient
 from fastapi.utils import match_pydantic_error_url
+from pytest_check import assert_that, IsDict
+
+from docs_src.request_files.tutorial002 import app
+
+client = TestClient(app)
+
+
+def test_post_form_no_body():
+    response = client.post("/files/")
+    assert response.status_code == 422, response.text
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "files"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": match_pydantic_error_url("missing"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "files"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
+
+
+def test_post_body_json():
+    response = client.post("/files/", json={"file": "Foo"})
+    assert response.status_code == 422, response.text
+    assert response.json() == IsDict(
+        {
+            "detail": [
+                {
+                    "type": "missing",
+                    "loc": ["body", "files"],
+                    "msg": "Field required",
+                    "input": None,
+                    "url": match_pydantic_error_url("missing"),
+                }
+            ]
+        }
+    ) | IsDict(
+        # TODO: remove when deprecating Pydantic v1
+        {
+            "detail": [
+                {
+                    "loc": ["body", "files"],
+                    "msg": "field required",
+                    "type": "value_error.missing",
+                }
+            ]
+        }
+    )
+
+
+def test_post_files(tmp_path):
+    path = tmp_path / "test.txt"
+    path.write_bytes(b"<file content>")
+    path2 = tmp_path / "test2.txt"
+    path2.write_bytes(b"<file content2>")
+
+    client = TestClient(app)
+    with path.open("rb") as file, path2.open("rb") as file2:
+        response = client.post("/files", files={"file": ("test.txt", file), "file2": ("test2.txt", file2)})
+        assert response.status_code == 422, response.text
+        assert response.json() == IsDict(
+            {
+                "detail": [
+                    {
+                        "type": "missing",
+                        "loc": ["body", "files"],
+                        "msg": "Field required",
+                        "input": None,
+                        "url": match_pydantic_error_url("missing"),
+                    }
+                ]
+            }
+        ) | IsDict(
+            # TODO: remove when deprecating Pydantic v1
+            {
+                "detail": [
+                    {
+                        "loc": ["body", "files"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    }
+                ]
+            }
+        )rom fastapi.utils import match_pydantic_error_url
 
 from docs_src.request_files.tutorial002 import app
 

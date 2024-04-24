@@ -11,7 +11,9 @@
 
 But you can use any relational database that you want.
 
-Here we'll see an example using <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a>.
+Here we'll see an exaAnd then, when using the dependency in a *path operation function*, we declare it with the type `Session` imported directly from SQLAlchemy.
+
+By declaring the dependency with the type `Session`, we provide better editor support inside the *path operation function*. This allows the editor to recognize that the `db` parameter is of type `Session`. using <a href="https://www.sqlalchemy.org/" class="external-link" target="_blank">SQLAlchemy</a>.
 
 You can easily adapt it to any database supported by SQLAlchemy, like:
 

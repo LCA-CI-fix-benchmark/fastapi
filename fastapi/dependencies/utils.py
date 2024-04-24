@@ -3,8 +3,50 @@ from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
     Any,
-    Callable,
-    Coroutine,
+    Callabl        if query_param_field:
+            query_param.field_info.description = (
+                query_param_field.description or query_param_field.title or ""
+            )
+    return dependant
+
+
+def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
+    assert callable(
+        depends.dependency
+    ), "A parameter-less dependency must have a callable dependenfrom contextlib import contextmanager, asynccontextmanager
+from fastapi.utils.threaded_asyncio import contextmanager_in_threadpool
+
+def is_async_gen_callable(call: Callable[..., Any]) -> bool:
+    if inspect.isasyncgenfunction(call):
+        return True
+    dunder_call = getattr(call, "__call__", None)  # noqa: B004
+    return inspect.isasyncgenfunction(dunder_call)
+
+
+def is_gen_callable(call: Callable[..., Any]) -> bool:
+    if inspect.isgeneratorfunction(call):
+        return True
+    dunder_call = getattr(call, "__call__", None)  # noqa: B004
+    return inspect.isgeneratorfunction(dunder_call)
+
+
+async def solve_generator(
+    *, call: Callable[..., Any], stack: AsyncExitStack, sub_values: Dict[str, Any]
+) -> Any:
+    if is_gen_callable(call):
+        cm = contextmanager_in_threadpool(contextmanager(call)(**sub_values))
+    elif is_async_gen_callable(call):
+        cm = asynccontextmanager(call)(**sub_values)
+    return await stack.enter_async_context(cm)et_sub_dependant(
+        depends=depends, dependency=depends.dependency, path=path
+    )
+    for query_param in dependant.query_params:
+        query_param_field = depends.dependency.model_fields.get(query_param.name)
+        if query_param_field:
+            query_param.field_info.description = (
+                query_param_field.description or query_param_field.title or ""
+            )
+    return dependant
     Dict,
     ForwardRef,
     List,

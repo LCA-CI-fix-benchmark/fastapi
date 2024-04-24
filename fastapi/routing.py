@@ -2,8 +2,21 @@ import asyncio
 import dataclasses
 import email.message
 import inspect
-import json
-from contextlib import AsyncExitStack
+impor    res: Any,
+    *,
+    exclude_unset: bool,
+    exclude_defaults: bool = False,
+    exclude_none: bool = False,
+) -> Any:
+    if isinstance(res, BaseModel):
+        read_with_orm_mode = getattr(_get_model_config(res), "read_with_orm_mode", None)
+        if read_with_orm_mode:
+            # Let from_orm extract the data from this model instead of converting
+            # it now to a dict.
+            # Otherwise, there's no way to extract lazy data that requires attribute
+            # access instead of dict iteration, e.g. lazy relationships.
+            return res
+    return Nonentextlib import AsyncExitStack
 from enum import Enum, IntEnum
 from typing import (
     Any,

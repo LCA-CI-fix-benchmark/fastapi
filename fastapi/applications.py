@@ -30,8 +30,28 @@ from fastapi.openapi.docs import (
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
-from fastapi.types import DecoratedCallable, IncEx
-from fastapi.utils import generate_unique_id
+from fastapi.types import DecoratedCalfrom typing import Any, Dict, Optional
+import logging
+
+logger = logging.getLogger(__name__)
+
+class FastAPI:
+    def __init__(self, *args, openapi_prefix=None, **kwargs):
+        self.openapi_url = None
+        self.title: Optional[str] = None
+        self.version: Optional[str] = None
+        self.openapi_schema: Optional[Dict[str, Any]] = None
+        if self.openapi_url:
+            assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
+            assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
+        # TODO: remove when discarding the openapi_prefix parameter
+        if openapi_prefix:
+            logger.warning(
+                '"openapi_prefix" has been deprecated in favor of "root_path", which '
+                "follows more closely the ASGI standard, is simpler, and more "
+                "automatic. Check the docs at "
+                "https://fastapi.tiangolo.com/advanced/sub-applications/"
+            )m fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
 from starlette.datastructures import State
 from starlette.exceptions import HTTPException
