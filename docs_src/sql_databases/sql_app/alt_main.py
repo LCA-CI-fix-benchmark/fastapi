@@ -1,16 +1,14 @@
 from typing import List
-
 from fastapi import Depends, FastAPI, HTTPException, Request, Response
 from sqlalchemy.orm import Session
 
 from . import crud, models, schemas
 from .database import SessionLocal, engine
 
+# Create all SQLAlchemy models' metadata
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-
-
 @app.middleware("http")
 async def db_session_middleware(request: Request, call_next):
     response = Response("Internal server error", status_code=500)
