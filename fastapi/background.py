@@ -1,7 +1,6 @@
 from typing import Any, Callable
-
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
-from typing_extensions import Annotated, Doc, ParamSpec  # type: ignore [attr-defined]
+from typing import Callable, Any  # Importing required modules to resolve mypy errors
 
 P = ParamSpec("P")
 
