@@ -211,7 +211,9 @@ def get_flat_dependant(
 
 
 def get_flat_params(dependant: Dependant) -> List[ModelField]:
-    flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
+    from fastapi.dependencies.dependant import get_flat_dependant
+
+    flat_dependant = get_flat_dependant(dependant)
     return (
         flat_dependant.path_params
         + flat_dependant.query_params
