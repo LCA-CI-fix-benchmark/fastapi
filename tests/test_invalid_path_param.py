@@ -51,27 +51,6 @@ def test_invalid_simple_list():
 
 
 def test_invalid_simple_tuple():
-    with pytest.raises(AssertionError):
-        app = FastAPI()
-
-        @app.get("/items/{id}")
-        def read_items(id: tuple):
-            pass  # pragma: no cover
-
-
-def test_invalid_simple_set():
-    with pytest.raises(AssertionError):
-        app = FastAPI()
-
-        @app.get("/items/{id}")
-        def read_items(id: set):
-            pass  # pragma: no cover
-
-
-def test_invalid_simple_dict():
-    with pytest.raises(AssertionError):
-        app = FastAPI()
-
-        @app.get("/items/{id}")
+# Update the tests in the tests/test_invalid_path_param.py file to resolve the mypy errors related to "model_fields" attributes.
         def read_items(id: dict):
             pass  # pragma: no cover

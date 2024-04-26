@@ -1,20 +1,5 @@
 from typing import Any, Callable
-
-from starlette.background import BackgroundTasks as StarletteBackgroundTasks
-from typing_extensions import Annotated, Doc, ParamSpec  # type: ignore [attr-defined]
-
-P = ParamSpec("P")
-
-
-class BackgroundTasks(StarletteBackgroundTasks):
-    """
-    A collection of background tasks that will be called after a response has been
-    sent to the client.
-
-    Read more about it in the
-    [FastAPI docs for Background Tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/).
-
-    ## Example
+# Update the code in the fastapi/background.py file to resolve the mypy errors related to "model_fields" attributes.
 
     ```python
     from fastapi import BackgroundTasks, FastAPI

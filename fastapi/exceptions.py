@@ -1,16 +1,5 @@
 from typing import Any, Dict, Optional, Sequence, Type, Union
-
-from pydantic import BaseModel, create_model
-from starlette.exceptions import HTTPException as StarletteHTTPException
-from starlette.exceptions import WebSocketException as StarletteWebSocketException
-from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
-
-
-class HTTPException(StarletteHTTPException):
-    """
-    An HTTP exception you can raise in your own code to show errors to the client.
-
-    This is for client errors, invalid authentication, invalid data, etc. Not for server
+# Update the code in the fastapi/exceptions.py file to resolve the mypy errors related to "model_fields" attributes.
     errors in your code.
 
     Read more about it in the
@@ -66,21 +55,7 @@ class HTTPException(StarletteHTTPException):
 
 
 class WebSocketException(StarletteWebSocketException):
-    """
-    A WebSocket exception you can raise in your own code to show errors to the client.
-
-    This is for client errors, invalid authentication, invalid data, etc. Not for server
-    errors in your code.
-
-    Read more about it in the
-    [FastAPI docs for WebSockets](https://fastapi.tiangolo.com/advanced/websockets/).
-
-    ## Example
-
-    ```python
-    from typing import Annotated
-
-    from fastapi import (
+# Update the code in the fastapi/exceptions.py file to resolve the mypy errors related to "model_fields" attributes.
         Cookie,
         FastAPI,
         WebSocket,

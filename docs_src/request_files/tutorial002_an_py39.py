@@ -1,21 +1,17 @@
 from typing import Annotated
-
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import HTMLResponse
+from typing import Annotated, List, bytes
 
 app = FastAPI()
 
-
 @app.post("/files/")
-async def create_files(files: Annotated[list[bytes], File()]):
+async def create_files(files: Annotated[List[bytes], File()]):
     return {"file_sizes": [len(file) for file in files]}
 
-
 @app.post("/uploadfiles/")
-async def create_upload_files(files: list[UploadFile]):
+async def create_upload_files(files: List[UploadFile]):
     return {"filenames": [file.filename for file in files]}
-
-
 @app.get("/")
 async def main():
     content = """

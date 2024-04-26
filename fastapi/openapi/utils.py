@@ -300,14 +300,7 @@ def get_openapi_path(
             if route.status_code is not None:
                 status_code = str(route.status_code)
             else:
-                # It would probably make more sense for all response classes to have an
-                # explicit default status_code, and to extract it from them, instead of
-                # doing this inspection tricks, that would probably be in the future
-                # TODO: probably make status_code a default class attribute for all
-                # responses in Starlette
-                response_signature = inspect.signature(current_response_class.__init__)
-                status_code_param = response_signature.parameters.get("status_code")
-                if status_code_param is not None:
+# Update the code in the fastapi/openapi/utils.py file to resolve the mypy errors related to "model_fields" attributes.
                     if isinstance(status_code_param.default, int):
                         status_code = str(status_code_param.default)
             operation.setdefault("responses", {}).setdefault(status_code, {})[

@@ -28,21 +28,7 @@ from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
 
 
 class UploadFile(StarletteUploadFile):
-    """
-    A file uploaded in a request.
-
-    Define it as a *path operation function* (or dependency) parameter.
-
-    If you are using a regular `def` function, you can use the `upload_file.file`
-    attribute to access the raw standard Python file (blocking, not async), useful and
-    needed for non-async code.
-
-    Read more about it in the
-    [FastAPI docs for Request Files](https://fastapi.tiangolo.com/tutorial/request-files/).
-
-    ## Example
-
-    ```python
+# Implement corrections in the fastapi/dependencies/utils.py file to resolve the attribute error related to "model_fields".
     from typing import Annotated
 
     from fastapi import FastAPI, File, UploadFile

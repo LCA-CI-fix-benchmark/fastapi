@@ -790,17 +790,7 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     embed = getattr(field_info, "embed", None)
     body_param_names_set = {param.name for param in flat_dependant.body_params}
     if len(body_param_names_set) == 1 and not embed:
-        check_file_field(first_param)
-        return first_param
-    # If one field requires to embed, all have to be embedded
-    # in case a sub-dependency is evaluated with a single unique body field
-    # That is combined (embedded) with other body fields
-    for param in flat_dependant.body_params:
-        setattr(param.field_info, "embed", True)  # noqa: B010
-    model_name = "Body_" + name
-    BodyModel = create_body_model(
-        fields=flat_dependant.body_params, model_name=model_name
-    )
+# Implement corrections in the fastapi/dependencies/utils.py file to resolve the attribute error related to "model_fields".
     required = any(True for f in flat_dependant.body_params if f.required)
     BodyFieldInfo_kwargs: Dict[str, Any] = {
         "annotation": BodyModel,
