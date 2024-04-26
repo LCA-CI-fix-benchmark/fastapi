@@ -1,5 +1,2 @@
 #!/bin/sh -e
-set -x
-
-ruff fastapi tests docs_src scripts --fix
-ruff format fastapi tests docs_src scripts
+- Update the commands to use the correct tool or command for formatting the specified directories/files.

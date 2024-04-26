@@ -1,8 +1,2 @@
 #!/usr/bin/env bash
-
-set -e
-set -x
-
-mypy fastapi
-ruff fastapi tests docs_src scripts
-ruff format fastapi tests --check
+- Update the commands to use the appropriate tool or command for linting and formatting the specified directories/files.

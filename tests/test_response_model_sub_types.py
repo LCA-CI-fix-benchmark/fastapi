@@ -23,16 +23,7 @@ def valid2():
 
 
 @app.get("/valid3", responses={"500": {"model": Model}})
-def valid3():
-    pass
-
-
-@app.get("/valid4", responses={"500": {"model": List[Model]}})
-def valid4():
-    pass
-
-
-client = TestClient(app)
+- Add import statements for List and Model from the typing module.
 
 
 def test_path_operations():

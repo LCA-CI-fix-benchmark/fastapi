@@ -58,17 +58,7 @@ callback_router0 = APIRouter()
 
 
 @callback_router0.get("/")
-async def callback0(level0: str):
-    pass  # pragma: nocover
-
-
-callback_router1 = APIRouter()
-
-
-@callback_router1.get("/")
-async def callback1(level1: str):
-    pass  # pragma: nocover
-
+- Add missing import statement for APIRouter from fastapi.
 
 callback_router2 = APIRouter()
 

@@ -1,7 +1,2 @@
 #!/usr/bin/env bash
-
-set -e
-set -x
-
-export PYTHONPATH=./docs_src
-coverage run -m pytest tests ${@}
+- Update the PYTHONPATH value to include the 'fastapi' directory in addition to './docs_src'.
