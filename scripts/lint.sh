@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
+#!/bin/bash
 
 set -e
-set -x
 
 mypy fastapi
-ruff fastapi tests docs_src scripts
+pytest fastapi tests docs_src scripts
 ruff format fastapi tests --check

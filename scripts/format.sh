@@ -1,5 +1,5 @@
 #!/bin/sh -e
-set -x
+#!/bin/bash
 
-ruff fastapi tests docs_src scripts --fix
-ruff format fastapi tests docs_src scripts
+black fastapi tests docs_src scripts --check
+black fastapi tests docs_src scripts
