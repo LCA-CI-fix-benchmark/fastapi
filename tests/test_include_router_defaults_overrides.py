@@ -1028,7 +1028,7 @@ def test_openapi():
                         "503": {"description": "Server error level 3"},
                         "504": {"description": "Server error level 4"},
                         "505": {"description": "Server error level 5"},
-                    },
+                    }
                     "callbacks": {
                         "callback0": {
                             "/": {
@@ -1287,6 +1287,7 @@ def test_openapi():
                         "401": {"description": "Client error level 1"},
                         "402": {"description": "Client error level 2"},
                         "403": {"description": "Client error level 3"},
+                    }
                         "404": {"description": "Client error level 4"},
                         "422": {
                             "description": "Validation Error",
@@ -1953,13 +1954,14 @@ def test_openapi():
                     ],
                     "responses": {
                         "200": {
-                            "description": "Successful Response",
                             "content": {"application/x-level-5": {"schema": {}}},
                         },
                         "400": {"description": "Client error level 0"},
                         "401": {"description": "Client error level 1"},
                         "402": {"description": "Client error level 2"},
                         "404": {"description": "Client error level 4"},
+                        "405": {"description": "Client error level 5"},
+                    }
                         "405": {"description": "Client error level 5"},
                         "422": {
                             "description": "Validation Error",
@@ -2189,13 +2191,14 @@ def test_openapi():
                     ],
                     "responses": {
                         "200": {
-                            "description": "Successful Response",
-                            "content": {"application/x-level-4": {"schema": {}}},
                         },
                         "400": {"description": "Client error level 0"},
                         "401": {"description": "Client error level 1"},
                         "402": {"description": "Client error level 2"},
                         "404": {"description": "Client error level 4"},
+                        "422": {
+                            "description": "Validation Error",
+                        }
                         "422": {
                             "description": "Validation Error",
                             "content": {
@@ -4653,13 +4656,14 @@ def test_openapi():
                     ],
                     "responses": {
                         "200": {
-                            "description": "Successful Response",
-                            "content": {"application/x-level-5": {"schema": {}}},
-                        },
                         "400": {"description": "Client error level 0"},
                         "402": {"description": "Client error level 2"},
                         "403": {"description": "Client error level 3"},
                         "404": {"description": "Client error level 4"},
+                        "405": {"description": "Client error level 5"},
+                        "422": {
+                            "description": "Validation Error",
+                        }
                         "405": {"description": "Client error level 5"},
                         "422": {
                             "description": "Validation Error",

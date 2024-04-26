@@ -123,18 +123,7 @@ def get_param_sub_dependant(
                 query_param_field.description or query_param_field.title or ""
             )
     return dependant
-
-
-def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
-    assert callable(
-        depends.dependency
-    ), "A parameter-less dependency must have a callable dependency"
-    dependant = get_sub_dependant(
-        depends=depends, dependency=depends.dependency, path=path
-    )
-    for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
-        if query_param_field:
+}
             query_param.field_info.description = (
                 query_param_field.description or query_param_field.title or ""
             )
@@ -513,17 +502,14 @@ def is_coroutine_callable(call: Callable[..., Any]) -> bool:
 
 
 def is_async_gen_callable(call: Callable[..., Any]) -> bool:
-    if inspect.isasyncgenfunction(call):
-        return True
+def is_coroutine_callable(call: Callable[..., Any]) -> bool:
+    if inspect.isroutine(call):
+        return inspect.iscoroutinefunction(call)
+    if inspect.isclass(call):
+        return False
     dunder_call = getattr(call, "__call__", None)  # noqa: B004
-    return inspect.isasyncgenfunction(dunder_call)
-
-
-def is_gen_callable(call: Callable[..., Any]) -> bool:
-    if inspect.isgeneratorfunction(call):
-        return True
-    dunder_call = getattr(call, "__call__", None)  # noqa: B004
-    return inspect.isgeneratorfunction(dunder_call)
+    return inspect.iscoroutinefunction(dunder_call)
+}
 
 
 async def solve_generator(
@@ -710,8 +696,8 @@ async def request_body_to_args(
         field_info = field.field_info
         embed = getattr(field_info, "embed", None)
         field_alias_omitted = len(required_params) == 1 and not embed
-        if field_alias_omitted:
-            received_body = {field.alias: received_body}
+    return values, errors
+}
 
         for field in required_params:
             loc: Tuple[str, ...]
@@ -790,14 +776,10 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     embed = getattr(field_info, "embed", None)
     body_param_names_set = {param.name for param in flat_dependant.body_params}
     if len(body_param_names_set) == 1 and not embed:
-        check_file_field(first_param)
-        return first_param
-    # If one field requires to embed, all have to be embedded
-    # in case a sub-dependency is evaluated with a single unique body field
-    # That is combined (embedded) with other body fields
-    for param in flat_dependant.body_params:
-        setattr(param.field_info, "embed", True)  # noqa: B010
-    model_name = "Body_" + name
+            else:
+                values[field.name] = v_
+    return values, errors
+}
     BodyModel = create_body_model(
         fields=flat_dependant.body_params, model_name=model_name
     )

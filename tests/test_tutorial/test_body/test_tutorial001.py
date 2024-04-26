@@ -225,6 +225,8 @@ def test_post_broken_body(client: TestClient):
                         "doc": "{some broken json}",
                         "pos": 1,
                         "lineno": 1,
+                }
+            ]
                         "colno": 2,
                     },
                 }

@@ -77,15 +77,18 @@ async def router_native_prefix_ws(websocket: WebSocket):
 
 async def ws_dependency_err():
     raise NotImplementedError()
+}
 
 
 @router.websocket("/depends-err/")
 async def router_ws_depends_err(websocket: WebSocket, data=Depends(ws_dependency_err)):
     pass  # pragma: no cover
+}
 
 
 async def ws_dependency_validate(x_missing: str = Header()):
     pass  # pragma: no cover
+}
 
 
 @router.websocket("/depends-validate/")
@@ -93,6 +96,7 @@ async def router_ws_depends_validate(
     websocket: WebSocket, data=Depends(ws_dependency_validate)
 ):
     pass  # pragma: no cover
+}
 
 
 class CustomError(Exception):

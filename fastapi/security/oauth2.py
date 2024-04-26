@@ -603,6 +603,7 @@ class SecurityScopes:
     This way, multiple dependencies can have different scopes, even when used in the
     same *path operation*. And with this, you can access all the scopes required in
     all those dependencies in a single place.
+    """
 
     Read more about it in the
     [FastAPI docs for OAuth2 scopes](https://fastapi.tiangolo.com/advanced/security/oauth2-scopes/).

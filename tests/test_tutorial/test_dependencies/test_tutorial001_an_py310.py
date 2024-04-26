@@ -59,6 +59,7 @@ def test_openapi_schema(client: TestClient):
                     "summary": "Read Items",
                     "operationId": "read_items_items__get",
                     "parameters": [
+                    }
                         {
                             "required": False,
                             "schema": IsDict(
@@ -75,17 +76,17 @@ def test_openapi_schema(client: TestClient):
                             "in": "query",
                         },
                         {
-                            "required": False,
                             "schema": {
                                 "title": "Skip",
                                 "type": "integer",
-                                "default": 0,
+                                "default": 0
                             },
                             "name": "skip",
                             "in": "query",
                         },
                         {
                             "required": False,
+                            "schema": {
                             "schema": {
                                 "title": "Limit",
                                 "type": "integer",

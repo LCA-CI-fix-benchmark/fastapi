@@ -217,7 +217,6 @@ class FastAPI(Starlette):
 
                 Read more in the
                 [FastAPI docs for Metadata and Docs URLs](https://fastapi.tiangolo.com/tutorial/metadata/#openapi-url).
-
                 **Example**
 
                 ```python
