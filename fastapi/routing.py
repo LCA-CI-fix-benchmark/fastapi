@@ -93,6 +93,7 @@ def _prepare_response_content(
             exclude_unset=exclude_unset,
             exclude_defaults=exclude_defaults,
             exclude_none=exclude_none,
+)
         )
     elif isinstance(res, list):
         return [
