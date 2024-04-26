@@ -36,10 +36,11 @@ def test_invalid_dict():
         class Item(BaseModel):
             title: str
 
+        from fastapi import Query
+
         @app.get("/items/")
         def read_items(q: Dict[str, Item] = Query(default=None)):
             pass  # pragma: no cover
-
 
 def test_invalid_simple_dict():
     with pytest.raises(AssertionError):

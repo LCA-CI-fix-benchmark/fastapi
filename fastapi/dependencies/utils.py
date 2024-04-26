@@ -710,7 +710,7 @@ async def request_body_to_args(
         field_info = field.field_info
         embed = getattr(field_info, "embed", None)
         field_alias_omitted = len(required_params) == 1 and not embed
-        if field_alias_omitted:
+        if 'field_alias_omitted' in locals() and field_alias_omitted:
             received_body = {field.alias: received_body}
 
         for field in required_params:

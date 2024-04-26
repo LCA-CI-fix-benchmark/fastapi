@@ -99,6 +99,7 @@ def _prepare_response_content(
             _prepare_response_content(
                 item,
                 exclude_unset=exclude_unset,
+            )
                 exclude_defaults=exclude_defaults,
                 exclude_none=exclude_none,
             )

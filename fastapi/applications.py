@@ -862,7 +862,6 @@ class FastAPI(Starlette):
                 schema. It is only available as an attribute.
 
                 **Example**
-
                 ```python
                 from fastapi import FastAPI
 
@@ -885,12 +884,12 @@ class FastAPI(Starlette):
                 "automatic. Check the docs at "
                 "https://fastapi.tiangolo.com/advanced/sub-applications/"
             )
+            )
         self.webhooks: Annotated[
             routing.APIRouter,
             Doc(
                 """
                 The `app.webhooks` attribute is an `APIRouter` with the *path
-                operations* that will be used just for documentation of webhooks.
 
                 Read more about it in the
                 [FastAPI docs for OpenAPI Webhooks](https://fastapi.tiangolo.com/advanced/openapi-webhooks/).
@@ -952,12 +951,12 @@ class FastAPI(Starlette):
         ] = {} if exception_handlers is None else dict(exception_handlers)
         self.exception_handlers.setdefault(HTTPException, http_exception_handler)
         self.exception_handlers.setdefault(
+        self.exception_handlers.setdefault(
             RequestValidationError, request_validation_exception_handler
         )
         self.exception_handlers.setdefault(
             WebSocketRequestValidationError,
             # Starlette still has incorrect type specification for the handlers
-            websocket_request_validation_exception_handler,  # type: ignore
         )
 
         self.user_middleware: List[Middleware] = (

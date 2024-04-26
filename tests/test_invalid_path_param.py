@@ -55,7 +55,7 @@ def test_invalid_simple_tuple():
         app = FastAPI()
 
         @app.get("/items/{id}")
-        def read_items(id: tuple):
+        def read_items(id: int):
             pass  # pragma: no cover
 
 
@@ -64,13 +64,12 @@ def test_invalid_simple_set():
         app = FastAPI()
 
         @app.get("/items/{id}")
-        def read_items(id: set):
+        def read_items(id: int):
             pass  # pragma: no cover
 
-
+def test_invalid_simple_dict():
 def test_invalid_simple_dict():
     with pytest.raises(AssertionError):
-        app = FastAPI()
 
         @app.get("/items/{id}")
         def read_items(id: dict):

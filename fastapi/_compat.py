@@ -383,7 +383,7 @@ else:
         return definitions
 
     def is_pv1_scalar_field(field: ModelField) -> bool:
-        from fastapi import params
+        from fastapi.params import ...
 
         field_info = field.field_info
         if not (
