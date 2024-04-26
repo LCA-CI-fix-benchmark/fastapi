@@ -57,6 +57,7 @@ def test_invalid_simple_tuple():
         @app.get("/items/{id}")
         def read_items(id: tuple):
             pass  # pragma: no cover
+            setattr(read_items, "model_fields", [])  # Define "model_fields" attribute for Callable type
 
 
 def test_invalid_simple_set():
@@ -66,6 +67,7 @@ def test_invalid_simple_set():
         @app.get("/items/{id}")
         def read_items(id: set):
             pass  # pragma: no cover
+            setattr(read_items, "model_fields", [])  # Define "model_fields" attribute for Callable type
 
 
 def test_invalid_simple_dict():

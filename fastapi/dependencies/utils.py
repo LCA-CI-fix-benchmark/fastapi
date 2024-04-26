@@ -791,6 +791,8 @@ def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     if len(body_param_names_set) == 1 and not embed:
         check_file_field(first_param)
         return first_param
+    if isinstance(first_param, Callable):
+        setattr(first_param, "model_fields", [])  # Define "model_fields" attribute for Callable type
     # If one field requires to embed, all have to be embedded
     # in case a sub-dependency is evaluated with a single unique body field
     # That is combined (embedded) with other body fields

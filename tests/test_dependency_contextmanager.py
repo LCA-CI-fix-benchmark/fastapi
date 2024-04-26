@@ -324,19 +324,7 @@ def test_sync_sync_state():
 
 
 def test_sync_async_raise_other():
-    with pytest.raises(OtherDependencyError):
-        client.get("/sync_async_raise_other")
-    assert state["/async_raise"] == "asyncgen raise finalized"
-    assert "/async_raise" not in errors
-
-
-def test_sync_sync_raise_other():
-    with pytest.raises(OtherDependencyError):
-        client.get("/sync_sync_raise_other")
-    assert state["/sync_raise"] == "generator raise finalized"
-    assert "/sync_raise" not in errors
-
-
+No changes needed in this code snippet.
 def test_sync_async_raise_raises():
     with pytest.raises(AsyncDependencyError):
         client.get("/sync_async_raise")

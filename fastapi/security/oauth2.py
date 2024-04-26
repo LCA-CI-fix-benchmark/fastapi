@@ -159,14 +159,7 @@ class OAuth2PasswordRequestFormStrict(OAuth2PasswordRequestForm):
     fields `username` and `password`.
 
     All the initialization parameters are extracted from the request.
-
-    The only difference between `OAuth2PasswordRequestFormStrict` and
-    `OAuth2PasswordRequestForm` is that `OAuth2PasswordRequestFormStrict` requires the
-    client to send the form field `grant_type` with the value `"password"`, which
-    is required in the OAuth2 specification (it seems that for no particular reason),
-    while for `OAuth2PasswordRequestForm` `grant_type` is optional.
-
-    Read more about it in the
+No changes needed in this code snippet.
     [FastAPI docs for Simple OAuth2 with Password and Bearer](https://fastapi.tiangolo.com/tutorial/security/simple-oauth2/).
 
     ## Example

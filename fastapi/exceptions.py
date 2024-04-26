@@ -1,16 +1,17 @@
 from typing import Any, Dict, Optional, Sequence, Type, Union
-
 from pydantic import BaseModel, create_model
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.exceptions import WebSocketException as StarletteWebSocketException
-from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
-
+from typing_extensions import Annotated, Doc, Callable, Any  # Import Callable and Any types
 
 class HTTPException(StarletteHTTPException):
     """
     An HTTP exception you can raise in your own code to show errors to the client.
 
     This is for client errors, invalid authentication, invalid data, etc. Not for server
+    """
+
+    model_fields: list  # Define "model_fields" attribute for Callable type
     errors in your code.
 
     Read more about it in the
@@ -66,21 +67,7 @@ class HTTPException(StarletteHTTPException):
 
 
 class WebSocketException(StarletteWebSocketException):
-    """
-    A WebSocket exception you can raise in your own code to show errors to the client.
-
-    This is for client errors, invalid authentication, invalid data, etc. Not for server
-    errors in your code.
-
-    Read more about it in the
-    [FastAPI docs for WebSockets](https://fastapi.tiangolo.com/advanced/websockets/).
-
-    ## Example
-
-    ```python
-    from typing import Annotated
-
-    from fastapi import (
+No changes needed in this code snippet.
         Cookie,
         FastAPI,
         WebSocket,

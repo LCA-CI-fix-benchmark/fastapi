@@ -209,18 +209,7 @@ class FastAPI(Starlette):
                 The URL where the OpenAPI schema will be served from.
 
                 If you set it to `None`, no OpenAPI schema will be served publicly, and
-                the default automatic endpoints `/docs` and `/redoc` will also be
-                disabled.
-
-                Read more in the
-                [FastAPI docs for Metadata and Docs URLs](https://fastapi.tiangolo.com/tutorial/metadata/#openapi-url).
-
-                **Example**
-
-                ```python
-                from fastapi import FastAPI
-
-                app = FastAPI(openapi_url="/api/v1/openapi.json")
+No changes needed in this code snippet.
                 ```
                 """
             ),
@@ -882,14 +871,7 @@ class FastAPI(Starlette):
                 "automatic. Check the docs at "
                 "https://fastapi.tiangolo.com/advanced/sub-applications/"
             )
-        self.webhooks: Annotated[
-            routing.APIRouter,
-            Doc(
-                """
-                The `app.webhooks` attribute is an `APIRouter` with the *path
-                operations* that will be used just for documentation of webhooks.
-
-                Read more about it in the
+No changes needed in this code snippet.
                 [FastAPI docs for OpenAPI Webhooks](https://fastapi.tiangolo.com/advanced/openapi-webhooks/).
                 """
             ),
