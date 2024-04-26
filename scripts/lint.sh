@@ -4,5 +4,8 @@ set -e
 set -x
 
 mypy fastapi
-ruff fastapi tests docs_src scripts
+#!/bin/bash
+# Run linting for codebase
+ruff lint fastapi tests docs_src scripts
+# Check code formatting
 ruff format fastapi tests --check
