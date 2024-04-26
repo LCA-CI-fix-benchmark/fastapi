@@ -18,18 +18,18 @@ reusable_oauth2 = OAuth2(
 
 
 class User(BaseModel):
-    username: str
-
+from fastapi import Security, Depends
+from fastapi.security import OAuth2PasswordRequestFormStrict
+from models import User
 
 # Here we use string annotations to test them
-def get_current_user(oauth_header: "str" = Security(reusable_oauth2)):
-    user = User(username=oauth_header)
+def get_current_user(oauth_header: str = Security(reusable_oauth2)):
+    user: User = User(username=oauth_header)
     return user
-
 
 @app.post("/login")
 # Here we use string annotations to test them
-def login(form_data: "OAuth2PasswordRequestFormStrict" = Depends()):
+def login(form_data: OAuth2PasswordRequestFormStrict = Depends()):
     return form_data
 
 

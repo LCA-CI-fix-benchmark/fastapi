@@ -42,19 +42,20 @@ def test_pydanticv2():
         return {"fast_uuid": asyncpg_uuid}
 
     class SomeCustomClass(BaseModel):
-        model_config = {"arbitrary_types_allowed": True}
+from models import MyUuid, SomeCustomClass
 
-        a_uuid: MyUuid
+model_config = {"arbitrary_types_allowed": True}
 
-        @field_serializer("a_uuid")
-        def serialize_a_uuid(self, v):
-            return str(v)
+a_uuid: MyUuid
 
-    @app.get("/get_custom_class")
-    def return_some_user():
-        # Test that the fix also works for custom pydantic classes
-        return SomeCustomClass(a_uuid=MyUuid("b8799909-f914-42de-91bc-95c819218d01"))
+@field_serializer("a_uuid")
+def serialize_a_uuid(self, v):
+    return str(v)
 
+@app.get("/get_custom_class")
+def return_some_user():
+    # Test that the fix also works for custom pydantic classes
+    return SomeCustomClass(a_uuid=MyUuid("b8799909-f914-42de-91bc-95c819218d01"))
     client = TestClient(app)
 
     with client:
@@ -85,16 +86,16 @@ def test_pydanticv1():
         return {"fast_uuid": asyncpg_uuid}
 
     class SomeCustomClass(BaseModel):
-        class Config:
-            arbitrary_types_allowed = True
-            json_encoders = {uuid.UUID: str}
+from models import MyUuid, SomeCustomClass
 
-        a_uuid: MyUuid
+model_config = {"arbitrary_types_allowed": True, "json_encoders": {uuid.UUID: str}}
 
-    @app.get("/get_custom_class")
-    def return_some_user():
-        # Test that the fix also works for custom pydantic classes
-        return SomeCustomClass(a_uuid=MyUuid("b8799909-f914-42de-91bc-95c819218d01"))
+a_uuid: MyUuid
+
+@app.get("/get_custom_class")
+def return_some_user():
+    # Test that the fix also works for custom pydantic classes
+    return SomeCustomClass(a_uuid=MyUuid("b8799909-f914-42de-91bc-95c819218d01"))
 
     client = TestClient(app)
 

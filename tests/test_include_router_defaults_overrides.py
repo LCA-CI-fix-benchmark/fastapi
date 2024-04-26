@@ -1296,13 +1296,13 @@ def test_openapi():
                                         "$ref": "#/components/schemas/HTTPValidationError"
                                     }
                                 }
-                            },
+                            }
                         },
                         "500": {"description": "Server error level 0"},
                         "501": {"description": "Server error level 1"},
                         "502": {"description": "Server error level 2"},
                         "503": {"description": "Server error level 3"},
-                        "504": {"description": "Server error level 4"},
+                        "504": {"description": "Server error level 4"}
                     },
                     "callbacks": {
                         "callback0": {
@@ -1974,8 +1974,9 @@ def test_openapi():
                         "500": {"description": "Server error level 0"},
                         "501": {"description": "Server error level 1"},
                         "502": {"description": "Server error level 2"},
+                        "503": {"description": "Server error level 3"},
                         "504": {"description": "Server error level 4"},
-                        "505": {"description": "Server error level 5"},
+                        "505": {"description": "Server error level 5"}
                     },
                     "callbacks": {
                         "callback0": {
@@ -3013,14 +3014,13 @@ def test_openapi():
                                     "schema": {
                                         "$ref": "#/components/schemas/HTTPValidationError"
                                     }
-                                }
                             },
                         },
                         "500": {"description": "Server error level 0"},
                         "501": {"description": "Server error level 1"},
                         "503": {"description": "Server error level 3"},
                         "504": {"description": "Server error level 4"},
-                        "505": {"description": "Server error level 5"},
+                        "505": {"description": "Server error level 5"}
                     },
                     "callbacks": {
                         "callback0": {
@@ -4672,10 +4672,11 @@ def test_openapi():
                             },
                         },
                         "500": {"description": "Server error level 0"},
+                        "501": {"description": "Server error level 1"},
                         "502": {"description": "Server error level 2"},
                         "503": {"description": "Server error level 3"},
                         "504": {"description": "Server error level 4"},
-                        "505": {"description": "Server error level 5"},
+                        "505": {"description": "Server error level 5"}
                     },
                     "callbacks": {
                         "callback0": {

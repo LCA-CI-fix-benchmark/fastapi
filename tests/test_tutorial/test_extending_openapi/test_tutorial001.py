@@ -35,10 +35,10 @@ def test_openapi_schema():
                         }
                     },
                     "summary": "Read Items",
-                    "operationId": "read_items_items__get",
+                    "operationId": "read_items_items__get"
                 }
             }
-        },
+        }
     }
     openapi_schema = response.json()
     # Request again to test the custom cache

@@ -1,5 +1,5 @@
 #!/bin/sh -e
-set -x
+set
 
 ruff fastapi tests docs_src scripts --fix
 ruff format fastapi tests docs_src scripts
