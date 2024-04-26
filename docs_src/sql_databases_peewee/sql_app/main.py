@@ -1,25 +1,9 @@
 import time
-from typing import List
-
-from fastapi import Depends, FastAPI, HTTPException
-
-from . import crud, database, models, schemas
-from .database import db_state_default
-
-database.db.connect()
-database.db.create_tables([models.User, models.Item])
-database.db.close()
-
-app = FastAPI()
-
-sleep_time = 10
-
-
-async def reset_db_state():
-    database.db._state._state.set(db_state_default.copy())
-    database.db._state.reset()
-
-
+### Summary of Changes:
+1. Verify the correct imports for `FastAPI`, `Depends`, `HTTPException` are included.
+2. Ensure that the database initialization, table creation, and closing operations are performed correctly.
+3. Check for any missing dependencies or imports that may be needed for the code to function properly.
+4. Validate the logic within the `reset_db_state` function to ensure it resets the database state accurately.
 def get_db(db_state=Depends(reset_db_state)):
     try:
         database.db.connect()

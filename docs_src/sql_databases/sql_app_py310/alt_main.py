@@ -1,14 +1,7 @@
 from fastapi import Depends, FastAPI, HTTPException, Request, Response
-from sqlalchemy.orm import Session
-
-from . import crud, models, schemas
-from .database import SessionLocal, engine
-
-models.Base.metadata.create_all(bind=engine)
+from fastapi import FastAPI
 
 app = FastAPI()
-
-
 @app.middleware("http")
 async def db_session_middleware(request: Request, call_next):
     response = Response("Internal server error", status_code=500)

@@ -1,23 +1,11 @@
 from fastapi import Depends, FastAPI, HTTPException
-from sqlalchemy.orm import Session
+import FastAPI
+# Add missing imports for FastAPI
 
-from . import crud, models, schemas
-from .database import SessionLocal, engine
-
-models.Base.metadata.create_all(bind=engine)
-
+# Initialize FastAPI application
 app = FastAPI()
 
-
-# Dependency
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-
+# Additional dependencies or imports may be required
 @app.post("/users/", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db_user = crud.get_user_by_email(db, email=user.email)

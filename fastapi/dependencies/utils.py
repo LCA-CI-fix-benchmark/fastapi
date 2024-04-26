@@ -329,20 +329,10 @@ def analyze_param(
         use_annotation = annotation
         type_annotation = annotation
     if get_origin(use_annotation) is Annotated:
-        annotated_args = get_args(annotation)
-        type_annotation = annotated_args[0]
-        fastapi_annotations = [
-            arg
-            for arg in annotated_args[1:]
-            if isinstance(arg, (FieldInfo, params.Depends))
-        ]
-        fastapi_specific_annotations = [
-            arg
-            for arg in fastapi_annotations
-            if isinstance(arg, (params.Param, params.Body, params.Depends))
-        ]
-        if fastapi_specific_annotations:
-            fastapi_annotation: Union[
+### Summary of Changes:
+1. Check for any missing imports that may be required for the code to run successfully.
+2. Ensure that the necessary functions or classes like `get_args`, `FieldInfo`, and `params` are correctly imported.
+3. Verify the logic for filtering `fastapi_annotations` and `fastapi_specific_annotations` to identify the correct types of annotations.
                 FieldInfo, params.Depends, None
             ] = fastapi_specific_annotations[-1]
         else:

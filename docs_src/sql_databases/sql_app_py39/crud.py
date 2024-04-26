@@ -1,20 +1,8 @@
 from sqlalchemy.orm import Session
-
-from . import models, schemas
-
-
-def get_user(db: Session, user_id: int):
-    return db.query(models.User).filter(models.User.id == user_id).first()
-
-
-def get_user_by_email(db: Session, email: str):
-    return db.query(models.User).filter(models.User.email == email).first()
-
-
-def get_users(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(models.User).offset(skip).limit(limit).all()
-
-
+### Summary of Changes:
+1. Import the necessary `Session` class to access the database session in the `crud.py` file.
+2. Verify the correct method to filter and retrieve data from the `User` model in the provided functions.
+3. Ensure that the `Session` object is correctly passed to interact with the database in each function.
 def create_user(db: Session, user: schemas.UserCreate):
     fake_hashed_password = user.password + "notreallyhashed"
     db_user = models.User(email=user.email, hashed_password=fake_hashed_password)

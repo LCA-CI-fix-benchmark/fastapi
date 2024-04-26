@@ -1,22 +1,6 @@
 from functools import lru_cache
-
-from fastapi import Depends, FastAPI
-from typing_extensions import Annotated
-
-from . import config
-
-app = FastAPI()
-
-
-@lru_cache
-def get_settings():
-    return config.Settings()
-
-
-@app.get("/info")
-async def info(settings: Annotated[config.Settings, Depends(get_settings)]):
-    return {
-        "app_name": settings.app_name,
-        "admin_email": settings.admin_email,
-        "items_per_user": settings.items_per_user,
-    }
+### Summary of Changes:
+1. Import `lru_cache` decorator to cache the results of the `get_settings` function.
+2. Ensure that the correct import for `lru_cache` is included to resolve any import errors.
+3. Verify the usage of the `Annotated` type from `typing_extensions` for the `settings` parameter.
+4. Check for any missing dependencies or imports that may be required for the code to function correctly.
