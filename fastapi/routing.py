@@ -336,8 +336,6 @@ def get_request_handler(
         return response
 
     return app
-
-
 def get_websocket_app(
     dependant: Dependant, dependency_overrides_provider: Optional[Any] = None
 ) -> Callable[[WebSocket], Coroutine[Any, Any, Any]]:

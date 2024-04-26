@@ -28,6 +28,7 @@ def test_get(path, expected_status, expected_response, client: TestClient):
     response = client.get(path)
     assert response.status_code == expected_status
     assert response.json() == expected_response
+    # Additional test cases can be added here with different path, expected_status, and expected_response values
 
 
 @needs_py310

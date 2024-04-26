@@ -490,6 +490,7 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
     OAuth2 flow for authentication using a bearer token obtained with an OAuth2 code
     flow. An instance of it would be used as a dependency.
     """
+    """
 
     def __init__(
         self,
