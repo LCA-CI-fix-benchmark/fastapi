@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 
-from . import a, b
+from . import module_a, module_b
 
 app = FastAPI()
 
-app.include_router(a.router, prefix="/a")
-app.include_router(b.router, prefix="/b")
+app.include_router(module_a.router, prefix="/a")
+app.include_router(module_b.router, prefix="/b")

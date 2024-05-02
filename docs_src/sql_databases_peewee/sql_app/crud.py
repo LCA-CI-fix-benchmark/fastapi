@@ -1,17 +1,14 @@
-from . import models, schemas
-
+from .models import User
+from .schemas import UserCreate, UserInDB
 
 def get_user(user_id: int):
-    return models.User.filter(models.User.id == user_id).first()
-
+    return User.get(User.id == user_id)
 
 def get_user_by_email(email: str):
-    return models.User.filter(models.User.email == email).first()
-
+    return User.get(User.email == email)
 
 def get_users(skip: int = 0, limit: int = 100):
-    return list(models.User.select().offset(skip).limit(limit))
-
+    return User.select().offset(skip).limit(limit)
 
 def create_user(user: schemas.UserCreate):
     fake_hashed_password = user.password + "notreallyhashed"

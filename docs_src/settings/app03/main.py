@@ -7,7 +7,7 @@ from . import config
 app = FastAPI()
 
 
-@lru_cache
+@lru_cache(maxsize=None)
 def get_settings():
     return config.Settings()
 
