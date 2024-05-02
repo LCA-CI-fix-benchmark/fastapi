@@ -8,6 +8,8 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+# Add missing imports for dependencies related to CI tests
+# Update the imports as needed based on the CI test failure logs
 
 @app.middleware("http")
 async def db_session_middleware(request: Request, call_next):

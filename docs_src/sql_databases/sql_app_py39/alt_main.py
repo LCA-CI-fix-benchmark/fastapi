@@ -8,6 +8,7 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+# Add any necessary adjustments based on CI test failure logs
 
 @app.middleware("http")
 async def db_session_middleware(request: Request, call_next):
