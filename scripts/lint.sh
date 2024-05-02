@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 set -e
+#!/bin/bash
+
 set -x
 
 mypy fastapi

@@ -1,19 +1,17 @@
 from typing import Any, Callable
+from typing_extensions import Annotated, Callable, ParamSpec  # type: ignore [attr-defined]
 
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
-from typing_extensions import Annotated, Doc, ParamSpec  # type: ignore [attr-defined]
 
 P = ParamSpec("P")
-
 
 class BackgroundTasks(StarletteBackgroundTasks):
     """
     A collection of background tasks that will be called after a response has been
     sent to the client.
-
-    Read more about it in the
-    [FastAPI docs for Background Tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/).
-
+    
+    def model_fields(self) -> Dict[str, Any]:
+        pass
     ## Example
 
     ```python

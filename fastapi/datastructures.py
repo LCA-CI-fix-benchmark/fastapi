@@ -27,6 +27,9 @@ from starlette.datastructures import UploadFile as StarletteUploadFile
 from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
 
 
+from typing import Any, Dict, Optional, Union
+from typing_extensions import Annotated, Callable, ParamSpec  # type: ignore [attr-defined]
+
 class UploadFile(StarletteUploadFile):
     """
     A file uploaded in a request.
@@ -36,12 +39,9 @@ class UploadFile(StarletteUploadFile):
     If you are using a regular `def` function, you can use the `upload_file.file`
     attribute to access the raw standard Python file (blocking, not async), useful and
     needed for non-async code.
-
-    Read more about it in the
-    [FastAPI docs for Request Files](https://fastapi.tiangolo.com/tutorial/request-files/).
-
-    ## Example
-
+    
+    def model_fields(self) -> Dict[str, Any]:
+        pass
     ```python
     from typing import Annotated
 

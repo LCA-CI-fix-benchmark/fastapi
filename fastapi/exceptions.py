@@ -3,13 +3,14 @@ from typing import Any, Dict, Optional, Sequence, Type, Union
 from pydantic import BaseModel, create_model
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.exceptions import WebSocketException as StarletteWebSocketException
-from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
-
+from typing_extensions import Annotated, Callable, TypedDict  # type: ignore [attr-defined]
 
 class HTTPException(StarletteHTTPException):
     """
     An HTTP exception you can raise in your own code to show errors to the client.
-
+    
+    def model_fields(self) -> Dict[str, Any]:
+        pass
     This is for client errors, invalid authentication, invalid data, etc. Not for server
     errors in your code.
 
