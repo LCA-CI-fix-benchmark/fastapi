@@ -709,7 +709,7 @@ async def request_body_to_args(
         field = required_params[0]
         field_info = field.field_info
         embed = getattr(field_info, "embed", None)
-        field_alias_omitted = len(required_params) == 1 and not embed
+        field_alias_omitted = (len(required_params) == 1 and not embed)
         if field_alias_omitted:
             received_body = {field.alias: received_body}
 
