@@ -57,7 +57,6 @@ def test_upload_file_is_closed(tmp_path: Path):
 
 # For UploadFile coverage, segments copied from Starlette tests
 
-
 @pytest.mark.anyio
 async def test_upload_file():
     stream = io.BytesIO(b"data")

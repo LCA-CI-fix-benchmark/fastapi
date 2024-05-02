@@ -58,8 +58,6 @@ def create_app():
         ):
             return item
 
-    # TODO: enable these tests once/if Form(embed=False) is supported
-    # TODO: In that case, define if File() should support example/examples too
     # @app.post("/form_example")
     # def form_example(firstname: str = Form(example="John")):
     #     return firstname

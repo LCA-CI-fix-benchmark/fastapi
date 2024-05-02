@@ -116,21 +116,17 @@ def test_openapi_schema():
                         },
                     ],
                 }
-            }
-        },
-        "components": {
-            "schemas": {
-                "ValidationError": {
-                    "title": "ValidationError",
-                    "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
                             "type": "array",
                             "items": {
                                 "anyOf": [{"type": "string"}, {"type": "integer"}]
-                            },
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
                         },
                         "msg": {"title": "Message", "type": "string"},
                         "type": {"title": "Error Type", "type": "string"},
