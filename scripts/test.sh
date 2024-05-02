@@ -3,5 +3,5 @@
 set -e
 set -x
 
-export PYTHONPATH=./docs_src
-coverage run -m pytest tests ${@}
+export PYTHONPATH=./fastapi:./tests
+coverage run -m pytest fastapi tests ${@}
