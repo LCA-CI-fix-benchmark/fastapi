@@ -226,7 +226,7 @@ def test_post_broken_body(client: TestClient):
                         "pos": 1,
                         "lineno": 1,
                         "colno": 2,
-                    },
+                    }
                 }
             ]
         }

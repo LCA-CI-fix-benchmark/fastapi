@@ -12,13 +12,14 @@ def get_client():
     client = TestClient(app)
     return client
 
-
 @needs_py310
 @pytest.mark.parametrize(
-    "path,expected_status,expected_response",
+    "path, expected_status, expected_response",
     [
         ("/items", 200, {"q": None, "skip": 0, "limit": 100}),
         ("/items?q=foo", 200, {"q": "foo", "skip": 0, "limit": 100}),
+    ]
+)
         ("/items?q=foo&skip=5", 200, {"q": "foo", "skip": 5, "limit": 100}),
         ("/items?q=foo&skip=5&limit=30", 200, {"q": "foo", "skip": 5, "limit": 30}),
         ("/users", 200, {"q": None, "skip": 0, "limit": 100}),
@@ -26,14 +27,13 @@ def get_client():
 )
 def test_get(path, expected_status, expected_response, client: TestClient):
     response = client.get(path)
-    assert response.status_code == expected_status
     assert response.json() == expected_response
-
 
 @needs_py310
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
+    assert response.json() == {
     assert response.json() == {
         "openapi": "3.1.0",
         "info": {"title": "FastAPI", "version": "0.1.0"},

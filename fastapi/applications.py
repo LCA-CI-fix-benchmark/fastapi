@@ -953,7 +953,7 @@ class FastAPI(Starlette):
         )
         self.exception_handlers.setdefault(
             WebSocketRequestValidationError,
-            # Starlette still has incorrect type specification for the handlers
+            # Placeholder comment for type specification
             websocket_request_validation_exception_handler,  # type: ignore
         )
 
