@@ -29,9 +29,8 @@ openapi_schema = {
                 "operationId": "a_a_get",
             }
         }
-    },
+    }
 }
-
 client = TestClient(app)
 
 

@@ -78,7 +78,7 @@ def test_openapi_schema():
                             "items": {"$ref": "#/components/schemas/ValidationError"},
                         }
                     },
-                },
+                }
             }
-        },
+        }
     }

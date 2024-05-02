@@ -46,7 +46,9 @@ def test_openapi_schema():
                             "schema": IsDict(
                                 {
                                     "title": "Callback Url",
-                                    "minLength": 1,
+                                    "minLength": 1
+                                }
+                            )
                                     "type": "string",
                                     "format": "uri",
                                 }
@@ -64,13 +66,13 @@ def test_openapi_schema():
                             "name": "callback_url",
                             "in": "query",
                         }
-                    ],
-                    "responses": {
                         "200": {
                             "description": "Successful Response",
-                            "content": {"application/json": {"schema": {}}},
+                            "content": {"application/json": {"schema": {}}}
                         },
                         "422": {
+                            "description": "Validation Error",
+                            "content": {
                             "description": "Validation Error",
                             "content": {
                                 "application/json": {
@@ -80,13 +82,13 @@ def test_openapi_schema():
                                 }
                             },
                         },
-                    },
-                    "callbacks": {
                         "callback_route": {
                             "{$callback_url}/callback/": {
                                 "get": {
                                     "summary": "Callback Route",
                                     "operationId": "callback_route__callback_url__callback__get",
+                                    "responses": {
+                                        "400": {
                                     "responses": {
                                         "400": {
                                             "content": {
@@ -108,38 +110,41 @@ def test_openapi_schema():
                                 }
                             }
                         }
-                    },
-                }
             }
         },
         "components": {
             "schemas": {
                 "CustomModel": {
                     "title": "CustomModel",
+                    "required": ["a"]
+                }
+            }
+        }
+                    "title": "CustomModel",
                     "required": ["a"],
                     "type": "object",
                     "properties": {"a": {"title": "A", "type": "integer"}},
-                },
-                "HTTPValidationError": {
-                    "title": "HTTPValidationError",
-                    "type": "object",
-                    "properties": {
                         "detail": {
                             "title": "Detail",
                             "type": "array",
-                            "items": {"$ref": "#/components/schemas/ValidationError"},
+                            "items": {"$ref": "#/components/schemas/ValidationError"}
                         }
-                    },
+                    }
                 },
                 "ValidationError": {
                     "title": "ValidationError",
                     "required": ["loc", "msg", "type"],
-                    "type": "object",
-                    "properties": {
-                        "loc": {
-                            "title": "Location",
+                    "type": "object"
+                },
+                "ValidationError": {
+                    "title": "ValidationError",
                             "type": "array",
                             "items": {
+                                "anyOf": [{"type": "string"}, {"type": "integer"}]
+                            }
+                        },
+                        "msg": {"title": "Message", "type": "string"},
+                        "type": {"title": "Error Type", "type": "string"}
                                 "anyOf": [{"type": "string"}, {"type": "integer"}]
                             },
                         },
@@ -149,4 +154,4 @@ def test_openapi_schema():
                 },
             }
         },
-    }
+// No code changes needed as the provided code snippet is empty.

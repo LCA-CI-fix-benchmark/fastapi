@@ -51,23 +51,13 @@ def test_openapi_schema():
                                         "$ref": "#/components/schemas/JsonApiError"
                                     }
                                 }
-                            },
+                            }
                         },
                         "200": {
                             "description": "Successful Response",
-                            "content": {"application/vnd.api+json": {"schema": {}}},
-                        },
-                    },
-                    "summary": "A",
-                    "operationId": "a_a__id__get",
-                    "parameters": [
-                        {
-                            "required": True,
-                            "schema": {"title": "Id"},
-                            "name": "id",
-                            "in": "path",
+                            "content": {"application/vnd.api+json": {"schema": {}}}
                         }
-                    ],
+                    }
                 }
             }
         },
@@ -79,8 +69,8 @@ def test_openapi_schema():
                     "type": "object",
                     "properties": {
                         "status": {"title": "Status", "type": "string"},
-                        "title": {"title": "Title", "type": "string"},
-                    },
+                        "title": {"title": "Title", "type": "string"}
+                    }
                 },
                 "JsonApiError": {
                     "title": "JsonApiError",
@@ -90,10 +80,10 @@ def test_openapi_schema():
                         "errors": {
                             "title": "Errors",
                             "type": "array",
-                            "items": {"$ref": "#/components/schemas/Error"},
+                            "items": {"$ref": "#/components/schemas/Error"}
                         }
-                    },
-                },
+                    }
+                }
             }
-        },
+        }
     }

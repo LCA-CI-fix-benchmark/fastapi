@@ -45,5 +45,5 @@ def test_openapi_schema():
                     "operationId": "read_item_items__get",
                 }
             }
-        },
+        }
     }
