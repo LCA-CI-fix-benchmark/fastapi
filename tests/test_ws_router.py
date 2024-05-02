@@ -245,6 +245,10 @@ def test_depend_err_middleware():
         except Exception as e:
             await websocket.close(code=status.WS_1006_ABNORMAL_CLOSURE, reason=repr(e))
 
+def test_depend_err_handler():
+    """
+    Verify that it is possible to write custom WebSocket middleware to catch errors
+    """
     myapp = make_app(middleware=[Middleware(errorhandler)])
     client = TestClient(myapp)
     with pytest.raises(WebSocketDisconnect) as e:
@@ -252,13 +256,6 @@ def test_depend_err_middleware():
             pass  # pragma: no cover
     assert e.value.code == status.WS_1006_ABNORMAL_CLOSURE
     assert "NotImplementedError" in e.value.reason
-
-
-def test_depend_err_handler():
-    """
-    Verify that it is possible to write custom WebSocket middleware to catch errors
-    """
-
     async def custom_handler(websocket: WebSocket, exc: CustomError) -> None:
         await websocket.close(1002, "foo")
 

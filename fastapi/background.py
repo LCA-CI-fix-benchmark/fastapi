@@ -1,7 +1,5 @@
-from typing import Any, Callable
-
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
-from typing_extensions import Annotated, Doc, ParamSpec  # type: ignore [attr-defined]
+from typing import Annotated, ParamSpec, Callable, Type
 
 P = ParamSpec("P")
 
@@ -13,7 +11,6 @@ class BackgroundTasks(StarletteBackgroundTasks):
 
     Read more about it in the
     [FastAPI docs for Background Tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/).
-
     ## Example
 
     ```python
