@@ -40,8 +40,7 @@ class UploadFile(StarletteUploadFile):
     Read more about it in the
     [FastAPI docs for Request Files](https://fastapi.tiangolo.com/tutorial/request-files/).
 
-    ## Example
-
+    model_fields: Callable[..., Any]
     ```python
     from typing import Annotated
 

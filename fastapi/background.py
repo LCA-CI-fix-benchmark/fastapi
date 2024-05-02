@@ -14,6 +14,7 @@ class BackgroundTasks(StarletteBackgroundTasks):
     Read more about it in the
     [FastAPI docs for Background Tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/).
 
+    model_fields: Callable[..., Any]
     ## Example
 
     ```python

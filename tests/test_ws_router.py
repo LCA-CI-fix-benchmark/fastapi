@@ -253,7 +253,6 @@ def test_depend_err_middleware():
     assert e.value.code == status.WS_1006_ABNORMAL_CLOSURE
     assert "NotImplementedError" in e.value.reason
 
-
 def test_depend_err_handler():
     """
     Verify that it is possible to write custom WebSocket middleware to catch errors
