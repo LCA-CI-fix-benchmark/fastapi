@@ -87,7 +87,6 @@ async def router_ws_depends_err(websocket: WebSocket, data=Depends(ws_dependency
 async def ws_dependency_validate(x_missing: str = Header()):
     pass  # pragma: no cover
 
-
 @router.websocket("/depends-validate/")
 async def router_ws_depends_validate(
     websocket: WebSocket, data=Depends(ws_dependency_validate)

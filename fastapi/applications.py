@@ -959,13 +959,11 @@ class FastAPI(Starlette):
             # Starlette still has incorrect type specification for the handlers
             websocket_request_validation_exception_handler,  # type: ignore
         )
-
         self.user_middleware: List[Middleware] = (
             [] if middleware is None else list(middleware)
         )
         self.middleware_stack: Union[ASGIApp, None] = None
         self.setup()
-
     def build_middleware_stack(self) -> ASGIApp:
         # Duplicate/override from Starlette to add AsyncExitStackMiddleware
         # inside of ExceptionMiddleware, inside of custom user middlewares
