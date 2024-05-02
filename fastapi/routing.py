@@ -75,8 +75,6 @@ from typing_extensions import Annotated, Doc, deprecated  # type: ignore [attr-d
 def _prepare_response_content(
     res: Any,
     *,
-    exclude_unset: bool,
-    exclude_defaults: bool = False,
     exclude_none: bool = False,
 ) -> Any:
     if isinstance(res, BaseModel):
