@@ -108,7 +108,10 @@ def get_param_sub_dependant(
     path: str,
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
-    assert depends.dependency
+    assert depends.dependency is not None
+    if not hasattr(depends.dependency, 'model_fields'):
+        # Handle the case where the dependency doesn't have a 'model_fields' attribute
+        depends.dependency.model_fields = {}
     dependant = get_sub_dependant(
         depends=depends,
         dependency=depends.dependency,
@@ -126,9 +129,12 @@ def get_param_sub_dependant(
 
 
 def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
-    assert callable(
-        depends.dependency
-    ), "A parameter-less dependency must have a callable dependency"
+    if not callable(depends.dependency):
+        # Handle the case where the dependency is not callable
+        raise ValueError("A parameter-less dependency must have a callable dependency")
+    if not hasattr(depends.dependency, 'model_fields'):
+        # Handle the case where the dependency doesn't have a 'model_fields' attribute
+        depends.dependency.model_fields = {}
     dependant = get_sub_dependant(
         depends=depends, dependency=depends.dependency, path=path
     )
