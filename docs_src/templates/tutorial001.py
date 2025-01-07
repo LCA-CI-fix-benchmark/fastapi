@@ -13,6 +13,10 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/items/{id}", response_class=HTMLResponse)
 async def read_item(request: Request, id: str):
+    if not isinstance(id, str) or not id.isdigit():
+        return templates.TemplateResponse(
+            name="error.html", context={"request": request, "error": "Invalid item ID"}
+        )
     return templates.TemplateResponse(
         name="item.html", context={"request": request, "id": id}
     )
