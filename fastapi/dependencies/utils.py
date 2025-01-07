@@ -118,9 +118,13 @@ def get_param_sub_dependant(
     for query_param in dependant.query_params:
         query_param_field = depends.dependency.model_fields.get(query_param.name)
         if query_param_field:
+            # Use the description or title from the model field, if available
             query_param.field_info.description = (
                 query_param_field.description or query_param_field.title or ""
             )
+        else:
+            # Handle the case where the model_fields attribute is not available
+            query_param.field_info.description = ""
     return dependant
 
 
