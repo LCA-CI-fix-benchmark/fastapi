@@ -111,6 +111,13 @@ def get_swagger_ui_html(
     and the [FastAPI docs for Custom Docs UI Static Assets (Self-Hosting)](https://fastapi.tiangolo.com/how-to/custom-docs-ui-assets/).
     """
     current_swagger_ui_parameters = swagger_ui_default_parameters.copy()
+    # Debugging: Ensure swagger_ui_parameters format
+    if swagger_ui_parameters:
+        try:
+            current_swagger_ui_parameters.update(jsonable_encoder(swagger_ui_parameters))
+        except (TypeError, ValueError) as e:
+            raise ValueError(f"Invalid swagger_ui_parameters provided: {swagger_ui_parameters}. Error: {e}")
+
     if swagger_ui_parameters:
         current_swagger_ui_parameters.update(swagger_ui_parameters)
 
@@ -125,6 +132,10 @@ def get_swagger_ui_html(
     <body>
     <div id="swagger-ui">
     </div>
+    <!-- Additional Debugging: Log configuration -->
+    <script>
+        console.debug("Initializing Swagger UI with parameters:", {current_swagger_ui_parameters});
+    </script>
     <script src="{swagger_js_url}"></script>
     <!-- `SwaggerUIBundle` is now available on the page -->
     <script>
@@ -143,6 +154,12 @@ def get_swagger_ui_html(
         SwaggerUIBundle.presets.apis,
         SwaggerUIBundle.SwaggerUIStandalonePreset
         ],
+    onComplete: function() {
+        console.info("Swagger UI initialized successfully.");
+    },
+    onFailure: function(error) {
+        console.error("Swagger UI initialization failed:", error);
+    }
     })"""
 
     if init_oauth:
