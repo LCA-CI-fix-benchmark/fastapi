@@ -109,6 +109,13 @@ def get_param_sub_dependant(
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
     assert depends.dependency
+    if hasattr(depends.dependency, 'model_fields'):
+        for query_param in dependant.query_params:
+            query_param_field = depends.dependency.model_fields.get(query_param.name)
+            if query_param_field:
+                query_param.field_info.description = (
+                    query_param_field.description or query_param_field.title or ""
+                )
     dependant = get_sub_dependant(
         depends=depends,
         dependency=depends.dependency,
@@ -126,18 +133,16 @@ def get_param_sub_dependant(
 
 
 def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> Dependant:
-    assert callable(
-        depends.dependency
-    ), "A parameter-less dependency must have a callable dependency"
+    if hasattr(depends.dependency, 'model_fields'):
+        for query_param in dependant.query_params:
+            query_param_field = depends.dependency.model_fields.get(query_param.name)
+            if query_param_field:
+                query_param.field_info.description = (
+                    query_param_field.description or query_param_field.title or ""
+                )
     dependant = get_sub_dependant(
         depends=depends, dependency=depends.dependency, path=path
     )
-    for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
-        if query_param_field:
-            query_param.field_info.description = (
-                query_param_field.description or query_param_field.title or ""
-            )
     return dependant
 
 
