@@ -107,10 +107,11 @@ def get_param_sub_dependant(
     path: str,
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
-    assert depends.dependency
+    depends_callable = getattr(depends.dependency, "__call__", depends.dependency)
+    assert callable(depends_callable)
     dependant = get_sub_dependant(
         depends=depends,
-        dependency=depends.dependency,
+        dependency=depends_callable,
         path=path,
         name=param_name,
         security_scopes=security_scopes,
@@ -118,7 +119,7 @@ def get_param_sub_dependant(
     for query_param in dependant.query_params:
         query_param_field = depends.dependency.model_fields.get(query_param.name)
         if query_param_field:
-            query_param.field_info.description = (
+            query_param.field_info.description = query_param_field.description or (
                 query_param_field.description or query_param_field.title or ""
             )
     return dependant
