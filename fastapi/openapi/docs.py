@@ -97,7 +97,8 @@ def get_swagger_ui_html(
             It defaults to [swagger_ui_default_parameters][fastapi.openapi.docs.swagger_ui_default_parameters].
             """
         ),
-    ] = None,
+    ],
+    fallback_url: Optional[str] = None,  # Ensure backward compatibility with explicit fallback
 ) -> HTMLResponse:
     """
     Generate and return the HTML  that loads Swagger UI for the interactive
