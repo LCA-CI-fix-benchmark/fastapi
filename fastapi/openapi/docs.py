@@ -53,7 +53,7 @@ def get_swagger_ui_html(
             It is normally set to a CDN URL.
             """
         ),
-    ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js",
+    ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.11.0/swagger-ui-bundle.js",
     swagger_css_url: Annotated[
         str,
         Doc(
@@ -63,7 +63,7 @@ def get_swagger_ui_html(
             It is normally set to a CDN URL.
             """
         ),
-    ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui.css",
+    ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.11.0/swagger-ui.css",
     swagger_favicon_url: Annotated[
         str,
         Doc(
@@ -118,6 +118,7 @@ def get_swagger_ui_html(
     <!DOCTYPE html>
     <html>
     <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' https: data:;">
     <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
     <link rel="shortcut icon" href="{swagger_favicon_url}">
     <title>{title}</title>
