@@ -114,13 +114,14 @@ def get_param_sub_dependant(
         path=path,
         name=param_name,
         security_scopes=security_scopes,
-    )
-    for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
-        if query_param_field:
-            query_param.field_info.description = (
-                query_param_field.description or query_param_field.title or ""
-            )
+    )    
+    if hasattr(depends.dependency, "model_fields"):
+        for query_param in dependant.query_params:
+            query_param_field = depends.dependency.model_fields.get(query_param.name)
+            if query_param_field:
+                query_param.field_info.description = (
+                    query_param_field.description or query_param_field.title or ""
+                )
     return dependant
 
 
