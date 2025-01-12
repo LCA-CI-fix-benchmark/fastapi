@@ -53,17 +53,17 @@ def get_swagger_ui_html(
             It is normally set to a CDN URL.
             """
         ),
-    ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js",
+    ] = DEFAULT_SWAGGER_JS_URL,
     swagger_css_url: Annotated[
         str,
         Doc(
             """
             The URL to use to load the Swagger UI CSS.
-
+            Can be set to a local path for self-hosting.
             It is normally set to a CDN URL.
             """
         ),
-    ] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui.css",
+    ] = DEFAULT_SWAGGER_CSS_URL,
     swagger_favicon_url: Annotated[
         str,
         Doc(
@@ -71,7 +71,7 @@ def get_swagger_ui_html(
             The URL of the favicon to use. It is normally shown in the browser tab.
             """
         ),
-    ] = "https://fastapi.tiangolo.com/img/favicon.png",
+    ] = DEFAULT_SWAGGER_FAVICON_URL,
     oauth2_redirect_url: Annotated[
         Optional[str],
         Doc(
@@ -188,7 +188,7 @@ def get_redoc_html(
             It is normally set to a CDN URL.
             """
         ),
-    ] = "https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js",
+    ] = DEFAULT_REDOC_JS_URL,
     redoc_favicon_url: Annotated[
         str,
         Doc(
@@ -196,7 +196,7 @@ def get_redoc_html(
             The URL of the favicon to use. It is normally shown in the browser tab.
             """
         ),
-    ] = "https://fastapi.tiangolo.com/img/favicon.png",
+    ] = DEFAULT_REDOC_FAVICON_URL,
     with_google_fonts: Annotated[
         bool,
         Doc(
