@@ -116,7 +116,13 @@ def get_param_sub_dependant(
         security_scopes=security_scopes,
     )
     for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
+        if isinstance(depends.dependency, Callable):
+            query_param_field = None
+        else:
+            if isinstance(depends.dependency, Callable):
+            query_param_field = None
+        else:
+            query_param_field = depends.dependency.model_fields.get(query_param.name)
         if query_param_field:
             query_param.field_info.description = (
                 query_param_field.description or query_param_field.title or ""
