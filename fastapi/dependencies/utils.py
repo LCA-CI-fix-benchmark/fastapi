@@ -117,9 +117,13 @@ def get_param_sub_dependant(
         security_scopes=security_scopes,
     )
     for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
-        if query_param_field:
-            query_param.field_info.description = (
+        # Handle both Pydantic models and regular callables
+        model_fields = getattr(depends.dependency, "model_fields", None)  
+        if model_fields and isinstance(model_fields, dict):
+            query_param_field = model_fields.get(query_param.name)
+            if query_param_field:
+                # Only set description if we found a valid model field
+                query_param.field_info.description = (
                 query_param_field.description or query_param_field.title or ""
             )
     return dependant
@@ -133,9 +137,13 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
         depends=depends, dependency=depends.dependency, path=path
     )
     for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
-        if query_param_field:
-            query_param.field_info.description = (
+        # Handle both Pydantic models and regular callables
+        model_fields = getattr(depends.dependency, "model_fields", None)
+        if model_fields and isinstance(model_fields, dict):
+            query_param_field = model_fields.get(query_param.name)
+            if query_param_field:
+                # Only set description if we found a valid model field
+                query_param.field_info.description = (
                 query_param_field.description or query_param_field.title or ""
             )
     return dependant
