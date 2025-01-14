@@ -282,9 +282,18 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
             }
 
             arr = qp.split("&");
-            arr.forEach(function (v,i,_arr) { _arr[i] = '"' + v.replace('=', '":"') + '"';});
-            qp = qp ? JSON.parse('{' + arr.join() + '}',
-                    function (key, value) {
+            qp = qp ? arr.reduce(function(obj, item) {
+                    var parts = item.split('=');
+                    if (parts.length === 2) {
+                        obj[parts[0]] = parts[1];
+                    }
+                    return obj;
+                }, {}
+            ) : {};
+            
+            Object.keys(qp).forEach(function(key) {
+                qp[key] = decodeURIComponent(qp[key]);
+            });
                         return key === "" ? value : decodeURIComponent(value);
                     }
             ) : {};
