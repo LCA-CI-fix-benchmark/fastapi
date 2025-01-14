@@ -1,7 +1,6 @@
 import json
 from typing import Any, Dict, Optional
 
-from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
 from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
 
@@ -133,7 +132,7 @@ def get_swagger_ui_html(
     """
 
     for key, value in current_swagger_ui_parameters.items():
-        html += f"{json.dumps(key)}: {json.dumps(jsonable_encoder(value))},\n"
+        html += f"{json.dumps(key)}: {json.dumps(value)},\n"
 
     if oauth2_redirect_url:
         html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
