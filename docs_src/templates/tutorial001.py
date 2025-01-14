@@ -8,7 +8,7 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="docs_src/templates")
 
 
 @app.get("/items/{id}", response_class=HTMLResponse)
