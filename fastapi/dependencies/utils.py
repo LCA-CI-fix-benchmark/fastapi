@@ -107,7 +107,10 @@ def get_param_sub_dependant(
     path: str,
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
-    assert depends.dependency
+    if isinstance(depends, params.Depends):
+        assert depends.dependency
+    else:
+        depends = params.Depends(depends)
     dependant = get_sub_dependant(
         depends=depends,
         dependency=depends.dependency,
@@ -128,9 +131,12 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     assert callable(
         depends.dependency
     ), "A parameter-less dependency must have a callable dependency"
-    dependant = get_sub_dependant(
+    if isinstance(depends, params.Depends):
+        dependant = get_sub_dependant(
         depends=depends, dependency=depends.dependency, path=path
     )
+    else:
+        dependant = get_sub_dependant(depends=params.Depends(depends), dependency=depends, path=path)
     for query_param in dependant.query_params:
         query_param_field = depends.dependency.model_fields.get(query_param.name)
         if query_param_field:
