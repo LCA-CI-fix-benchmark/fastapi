@@ -55,6 +55,7 @@ from fastapi.logger import logger
 from fastapi.security.base import SecurityBase
 from fastapi.security.oauth2 import OAuth2, SecurityScopes
 from fastapi.security.open_id_connect_url import OpenIdConnect
+from fastapi.security.utils import get_model_fields
 from fastapi.utils import create_response_field, get_path_param_names
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
@@ -148,6 +149,7 @@ def get_sub_dependant(
     path: str,
     name: Optional[str] = None,
     security_scopes: Optional[List[str]] = None,
+    dependency_model: Optional[Type[Any]] = None,
 ) -> Dependant:
     security_requirement = None
     security_scopes = security_scopes or []
@@ -161,12 +163,15 @@ def get_sub_dependant(
         security_requirement = SecurityRequirement(
             security_scheme=dependency, scopes=use_scopes
         )
+    if dependency_model:
+        depends.dependency.model_fields = get_model_fields(dependency_model)
     sub_dependant = get_dependant(
         path=path,
         call=dependency,
         name=name,
         security_scopes=security_scopes,
         use_cache=depends.use_cache,
+        dependency_model=dependency_model,
     )
     if security_requirement:
         sub_dependant.security_requirements.append(security_requirement)
