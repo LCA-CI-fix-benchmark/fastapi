@@ -107,6 +107,8 @@ def get_param_sub_dependant(
     path: str,
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
+    if not hasattr(depends.dependency, 'model_fields'):
+        raise AttributeError("depends.dependency must have a 'model_fields' attribute")
     assert depends.dependency
     dependant = get_sub_dependant(
         depends=depends,
@@ -116,6 +118,13 @@ def get_param_sub_dependant(
         security_scopes=security_scopes,
     )
     for query_param in dependant.query_params:
+        if query_param.name in getattr(depends.dependency, 'model_fields', {}):
+            query_param_field = depends.dependency.model_fields[query_param.name]
+            query_param.field_info.description = (
+                query_param_field.description or query_param_field.title or ""
+            )
+        else:
+            logger.warning(f"Missing 'model_fields' attribute for query parameter {query_param.name}")
         query_param_field = depends.dependency.model_fields.get(query_param.name)
         if query_param_field:
             query_param.field_info.description = (
