@@ -116,6 +116,8 @@ def get_param_sub_dependant(
         name=param_name,
         security_scopes=security_scopes,
     )
+    if isinstance(depends.dependency, params.CallableDependency):
+        return dependant
     for query_param in dependant.query_params:
         query_param_field = depends.dependency.model_fields.get(query_param.name)
         if query_param_field:
