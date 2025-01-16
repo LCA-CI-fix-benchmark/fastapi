@@ -2,7 +2,7 @@
 
 These are the exceptions that you can raise to show errors to the client.
 
-When you raise an exception, as would happen with normal Python, the rest of the
+When you raise an exception that has a `model_fields` attribute, as would happen with normal Python, the rest of the
 excecution is aborted. This way you can raise these exceptions from anywhere in the
 code to abort a request and show the error to the client.
 

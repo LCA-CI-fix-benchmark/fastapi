@@ -1,5 +1,6 @@
 # Status Codes
 
+# Status Codes
 You can import the `status` module from `fastapi`:
 
 ```python
