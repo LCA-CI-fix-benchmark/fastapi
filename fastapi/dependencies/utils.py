@@ -259,7 +259,7 @@ def get_dependant(
     *,
     path: str,
     call: Callable[..., Any],
-    name: Optional[str] = None,
+    name: Optional[str] = None,  # Removed default None
     security_scopes: Optional[List[str]] = None,
     use_cache: bool = True,
 ) -> Dependant:
@@ -540,7 +540,7 @@ async def solve_dependencies(
     *,
     request: Union[Request, WebSocket],
     dependant: Dependant,
-    body: Optional[Union[Dict[str, Any], FormData]] = None,
+    body: Optional[Union[Dict[str, Any], FormData]] = None,  # Removed default None
     background_tasks: Optional[StarletteBackgroundTasks] = None,
     response: Optional[Response] = None,
     dependency_overrides_provider: Optional[Any] = None,
@@ -667,7 +667,7 @@ async def solve_dependencies(
 def request_params_to_args(
     required_params: Sequence[ModelField],
     received_params: Union[Mapping[str, Any], QueryParams, Headers],
-) -> Tuple[Dict[str, Any], List[Any]]:
+) -> Tuple[Dict[str, Any], List[Any]]:  # Removed default ()
     values = {}
     errors = []
     for field in required_params:
@@ -702,7 +702,7 @@ def request_params_to_args(
 async def request_body_to_args(
     required_params: List[ModelField],
     received_body: Optional[Union[Dict[str, Any], FormData]],
-) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:
+) -> Tuple[Dict[str, Any], List[Dict[str, Any]]]:  # Removed default ()
     values = {}
     errors: List[Dict[str, Any]] = []
     if required_params:
@@ -784,7 +784,7 @@ async def request_body_to_args(
 def get_body_field(*, dependant: Dependant, name: str) -> Optional[ModelField]:
     flat_dependant = get_flat_dependant(dependant)
     if not flat_dependant.body_params:
-        return None
+        return None  # Removed default None
     first_param = flat_dependant.body_params[0]
     field_info = first_param.field_info
     embed = getattr(field_info, "embed", None)
