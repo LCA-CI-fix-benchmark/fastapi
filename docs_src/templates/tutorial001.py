@@ -9,6 +9,8 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 templates = Jinja2Templates(directory="templates")
+if not os.path.exists("templates"):
+    raise FileNotFoundError("Templates directory is missing. Please ensure it exists.")
 
 
 @app.get("/items/{id}", response_class=HTMLResponse)
