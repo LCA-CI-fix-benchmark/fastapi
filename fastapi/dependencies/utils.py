@@ -108,20 +108,29 @@ def get_param_sub_dependant(
     path: str,
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
-    assert depends.dependency
-    dependant = get_sub_dependant(
-        depends=depends,
-        dependency=depends.dependency,
-        path=path,
-        name=param_name,
-        security_scopes=security_scopes,
-    )
-    for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
-        if query_param_field:
-            query_param.field_info.description = (
-                query_param_field.description or query_param_field.title or ""
-            )
+    if not callable(depends.dependency):
+        assert depends.dependency
+        dependant = get_sub_dependant(
+            depends=depends,
+            dependency=depends.dependency,
+            path=path,
+            name=param_name,
+            security_scopes=security_scopes,
+        )
+        for query_param in dependant.query_params:
+            query_param_field = depends.dependency.model_fields.get(query_param.name)
+            if query_param_field:
+                query_param.field_info.description = (
+                    query_param_field.description or query_param_field.title or ""
+                )
+    else:
+        dependant = get_sub_dependant(
+            depends=depends,
+            dependency=depends.dependency,
+            path=path,
+            name=param_name,
+            security_scopes=security_scopes,
+        )
     return dependant
 
 
