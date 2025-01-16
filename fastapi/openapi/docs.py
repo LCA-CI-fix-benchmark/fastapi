@@ -1,9 +1,10 @@
 import json
+import html
 from typing import Any, Dict, Optional
 
 from fastapi.encoders import jsonable_encoder
 from starlette.responses import HTMLResponse
-from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
+from typing_extensions import Annotated, Doc
 
 swagger_ui_default_parameters: Annotated[
     Dict[str, Any],
@@ -118,18 +119,18 @@ def get_swagger_ui_html(
     <!DOCTYPE html>
     <html>
     <head>
-    <link type="text/css" rel="stylesheet" href="{swagger_css_url}">
-    <link rel="shortcut icon" href="{swagger_favicon_url}">
-    <title>{title}</title>
+    <link type="text/css" rel="stylesheet" href="{html.escape(swagger_css_url)}">
+    <link rel="shortcut icon" href="{html.escape(swagger_favicon_url)}">
+    <title>{html.escape(title)}</title>
     </head>
     <body>
     <div id="swagger-ui">
     </div>
-    <script src="{swagger_js_url}"></script>
+    <script src="{html.escape(swagger_js_url)}"></script>
     <!-- `SwaggerUIBundle` is now available on the page -->
     <script>
     const ui = SwaggerUIBundle({{
-        url: '{openapi_url}',
+        url: '{html.escape(openapi_url)}',
     """
 
     for key, value in current_swagger_ui_parameters.items():
@@ -220,17 +221,17 @@ def get_redoc_html(
     <!DOCTYPE html>
     <html>
     <head>
-    <title>{title}</title>
+    <title>{html.escape(title)}</title>
     <!-- needed for adaptive design -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     """
     if with_google_fonts:
         html += """
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700%7CRoboto:300,400,700" rel="stylesheet">
     """
     html += f"""
-    <link rel="shortcut icon" href="{redoc_favicon_url}">
+    <link rel="shortcut icon" href="{html.escape(redoc_favicon_url)}">
     <!--
     ReDoc doesn't change outer page styles
     -->
@@ -245,8 +246,8 @@ def get_redoc_html(
     <noscript>
         ReDoc requires Javascript to function. Please enable it to browse the documentation.
     </noscript>
-    <redoc spec-url="{openapi_url}"></redoc>
-    <script src="{redoc_js_url}"> </script>
+    <redoc spec-url="{html.escape(openapi_url)}"></redoc>
+    <script src="{html.escape(redoc_js_url)}"> </script>
     </body>
     </html>
     """
