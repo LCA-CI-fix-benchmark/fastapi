@@ -101,7 +101,7 @@ def get_swagger_ui_html(
 ) -> HTMLResponse:
     """
     Generate and return the HTML  that loads Swagger UI for the interactive
-    API docs (normally served at `/docs`).
+    API docs (normally served at `/docs`). Handles encoding and merging all parameters safely.
 
     You would only call this function yourself if you needed to override some parts,
     for example the URLs to use to load Swagger UI's JavaScript and CSS.
@@ -132,8 +132,14 @@ def get_swagger_ui_html(
         url: '{openapi_url}',
     """
 
-    for key, value in current_swagger_ui_parameters.items():
-        html += f"{json.dumps(key)}: {json.dumps(jsonable_encoder(value))},\n"
+    # Safely encode all parameters to prevent encoding mismatches
+    try:
+        for key, value in current_swagger_ui_parameters.items():
+            encoded_key = json.dumps(key)
+            encoded_value = json.dumps(jsonable_encoder(value))
+            html += f"{encoded_key}: {encoded_value},\n"
+    except Exception as e:
+        raise ValueError(f"Failed to encode Swagger UI parameters: {e}")
 
     if oauth2_redirect_url:
         html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
