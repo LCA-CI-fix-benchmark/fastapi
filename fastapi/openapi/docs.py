@@ -264,13 +264,28 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
     <!doctype html>
     <html lang="en-US">
     <head>
+        <meta charset="UTF-8">
         <title>Swagger UI: OAuth2 Redirect</title>
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
     </head>
     <body>
     <script>
         'use strict';
         function run () {
-            var oauth2 = window.opener.swaggerUIRedirectOauth2;
+            if (!window.opener) {
+                console.error("No window.opener found");
+                return;
+            }
+            try {
+                var oauth2 = window.opener.swaggerUIRedirectOauth2;
+            } catch (e) {
+                console.error("Error accessing swaggerUIRedirectOauth2:", e);
+                return;
+            }
+            if (!oauth2) {
+                console.error("No oauth2 object found");
+                return;
+            }
             var sentState = oauth2.state;
             var redirectUrl = oauth2.redirectUrl;
             var isValid, qp, arr;
@@ -330,13 +345,13 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
             window.close();
         }
 
-        if (document.readyState !== 'loading') {
-            run();
-        } else {
-            document.addEventListener('DOMContentLoaded', function () {
+        window.addEventListener('load', function() {
+            try {
                 run();
-            });
-        }
+            } catch (e) {
+                console.error("Error in OAuth2 redirect:", e);
+            }
+        });
     </script>
     </body>
     </html>
