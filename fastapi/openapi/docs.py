@@ -136,7 +136,7 @@ def get_swagger_ui_html(
         html += f"{json.dumps(key)}: {json.dumps(jsonable_encoder(value))},\n"
 
     if oauth2_redirect_url:
-        html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
+        html += f"oauth2RedirectUrl: '{oauth2_redirect_url}',"
 
     html += """
     presets: [
