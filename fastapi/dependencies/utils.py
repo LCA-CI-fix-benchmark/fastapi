@@ -117,11 +117,13 @@ def get_param_sub_dependant(
         security_scopes=security_scopes,
     )
     for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
-        if query_param_field:
-            query_param.field_info.description = (
-                query_param_field.description or query_param_field.title or ""
-            )
+        # Check if dependency has model_fields attribute before accessing it
+        if hasattr(depends.dependency, 'model_fields'):
+            query_param_field = depends.dependency.model_fields.get(query_param.name)
+            if query_param_field:
+                query_param.field_info.description = (
+                    query_param_field.description or query_param_field.title or ""
+                )
     return dependant
 
 
@@ -133,11 +135,13 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
         depends=depends, dependency=depends.dependency, path=path
     )
     for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
-        if query_param_field:
-            query_param.field_info.description = (
-                query_param_field.description or query_param_field.title or ""
-            )
+        # Check if dependency has model_fields attribute before accessing it
+        if hasattr(depends.dependency, 'model_fields'):
+            query_param_field = depends.dependency.model_fields.get(query_param.name)
+            if query_param_field:
+                query_param.field_info.description = (
+                    query_param_field.description or query_param_field.title or ""
+                )
     return dependant
 
 
