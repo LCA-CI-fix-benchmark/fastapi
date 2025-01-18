@@ -101,6 +101,13 @@ def check_file_field(field: ModelField) -> None:
             raise RuntimeError(multipart_not_installed_error) from None
 
 
+def has_model_fields(obj: Any) -> bool:
+    """Check if an object has model_fields attribute."""
+    try:
+        return hasattr(obj, "model_fields")
+    except Exception:
+        return False
+
 def get_param_sub_dependant(
     *,
     param_name: str,
@@ -117,11 +124,15 @@ def get_param_sub_dependant(
         security_scopes=security_scopes,
     )
     for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
-        if query_param_field:
-            query_param.field_info.description = (
-                query_param_field.description or query_param_field.title or ""
-            )
+        try:
+            if has_model_fields(depends.dependency):
+                query_param_field = depends.dependency.model_fields.get(query_param.name)
+                if query_param_field:
+                    query_param.field_info.description = (
+                        query_param_field.description or query_param_field.title or ""
+                    )
+        except AttributeError:
+            pass
     return dependant
 
 
@@ -133,11 +144,15 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
         depends=depends, dependency=depends.dependency, path=path
     )
     for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
-        if query_param_field:
-            query_param.field_info.description = (
-                query_param_field.description or query_param_field.title or ""
-            )
+        try:
+            if has_model_fields(depends.dependency):
+                query_param_field = depends.dependency.model_fields.get(query_param.name)
+                if query_param_field:
+                    query_param.field_info.description = (
+                        query_param_field.description or query_param_field.title or ""
+                    )
+        except AttributeError:
+            pass
     return dependant
 
 
