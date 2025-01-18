@@ -262,7 +262,7 @@ def get_swagger_ui_oauth2_redirect_html() -> HTMLResponse:
     # copied from https://github.com/swagger-api/swagger-ui/blob/v4.14.0/dist/oauth2-redirect.html
     html = """
     <!doctype html>
-    <html lang="en-US">
+    <html lang="en-US" style="margin:0">
     <head>
         <title>Swagger UI: OAuth2 Redirect</title>
     </head>
