@@ -2,6 +2,7 @@ import json
 from typing import Any, Dict, Optional
 
 from fastapi.encoders import jsonable_encoder
+from fastapi.exceptions import HTTPException  # Added missing import for handling HTTP exceptions
 from starlette.responses import HTMLResponse
 from typing_extensions import Annotated, Doc  # type: ignore [attr-defined]
 
