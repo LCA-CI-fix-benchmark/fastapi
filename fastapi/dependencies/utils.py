@@ -107,7 +107,8 @@ def get_param_sub_dependant(
     path: str,
     security_scopes: Optional[List[str]] = None,
 ) -> Dependant:
-    assert depends.dependency
+    if not hasattr(depends, "dependency") or not callable(depends.dependency):
+        raise TypeError(f"depends must have a callable dependency, not {type(depends.dependency)}")
     dependant = get_sub_dependant(
         depends=depends,
         dependency=depends.dependency,
@@ -116,7 +117,10 @@ def get_param_sub_dependant(
         security_scopes=security_scopes,
     )
     for query_param in dependant.query_params:
-        query_param_field = depends.dependency.model_fields.get(query_param.name)
+        if hasattr(depends.dependency, "model_fields"):
+            query_param_field = depends.dependency.model_fields.get(query_param.name)
+        else:
+            query_param_field = None
         if query_param_field:
             query_param.field_info.description = (
                 query_param_field.description or query_param_field.title or ""
