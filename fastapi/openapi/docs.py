@@ -20,6 +20,8 @@ swagger_ui_default_parameters: Annotated[
     "deepLinking": True,
     "showExtensions": True,
     "showCommonExtensions": True,
+    # Add a comment or additional configuration if necessary
+    # Ensure this setting is compatible with the current test expectations
 }
 
 
