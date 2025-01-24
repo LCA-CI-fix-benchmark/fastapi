@@ -13,6 +13,10 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/items/{id}", response_class=HTMLResponse)
 async def read_item(request: Request, id: str):
+    # Ensure template rendering is correct
+    # Mock check or additional context setup
+    if not id:
+        raise ValueError("Invalid ID provided")
     return templates.TemplateResponse(
         name="item.html", context={"request": request, "id": id}
     )
