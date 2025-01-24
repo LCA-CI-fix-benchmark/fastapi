@@ -19,7 +19,7 @@ swagger_ui_default_parameters: Annotated[
     "layout": "BaseLayout",
     "deepLinking": True,
     "showExtensions": True,
-    "showCommonExtensions": True,
+    "showCommonExtensions": False,
 }
 
 
